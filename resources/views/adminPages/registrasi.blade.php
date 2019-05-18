@@ -72,11 +72,20 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputCity">Provinsi</label>
+                        {{-- <select id="select-provinsi" name="provinsi" class="form-control" required>
+                            <option value="Pilih Provinsi">Pilih Provinsi</option>
+                            <option value="DKI Jakarta">DKI Jakarta</option>
+                            <option value="Jawa Barat">Jawa Barat</option>
+                            <option value="Jawa Tengah">Jawa Tengah</option>
+                            <option value="Jawa Timur">Jawa Timur</option>
+                            <option value="Jawa Timur">Jawa Timur</option>
+                            <option value="Banten">Banten</option>
+                        </select> --}}
                         <input type="text" class="form-control" id="inputCity" placeholder="Provinsi tempat tinggal Anda" name="provinsi" value="{{old('provinsi')}}" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputState">Kabupaten/Kota</label>
-                        <input type="text" class="form-control" id="inputState" placeholder="Kabupaten/Kota tempat tinggal Anda" name="kabupatenKota" value="{{old('kabupaten/kota')}}" required>
+                        <input type="text" class="form-control" id="kabupatenKota" placeholder="Provinsi tempat tinggal Anda" name="kabupatenKota" value="{{old('kabupatenKota')}}" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputZip">Nomor Handphone</label>

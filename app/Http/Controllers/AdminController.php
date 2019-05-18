@@ -51,7 +51,7 @@ class AdminController extends Controller
                 'password' => $request->password,
                 'alamat' => $request->address,
                 'provinsi' => $request->provinsi,
-                'kabupaten/kota' => $request->kabupatenKota,
+                'kabupaten_kota' => $request->kabupatenKota,
                 'status' => 0,
                 'role' => 2,
                 'no_hp' => $request->no_handphone,

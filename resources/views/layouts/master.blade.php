@@ -164,6 +164,7 @@
 
  <!-- Main JS-->
  <script src="{{ asset('assets/js/mainAdmin.js') }}"></script>
+ <script src="{{ asset('assets/js/move-kabupaten_kota.js') }}"></script>
 {{-- <script src="{{asset('assets/js/jquery-3.3.1.slim.min.js')}}"></script> --}}
 {{-- <script src="{{asset('assets/js/bootstrap.js')}}"></script> --}}
 <!-- jquery plugins here-->
