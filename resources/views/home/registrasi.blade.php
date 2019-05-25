@@ -132,7 +132,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="">Jenjang</label>
-                        <select name="jenjang" id="jenjang" class="form-control">
+                        <select name="jenjang" id="jenjang" class="form-control jenjang">
                             <option value="">Pilih Jenjang</option>
                             @foreach ($jenjang as $j)
                             <option value="{{$j->jenjang}}"required>{{$j->jenjang}}</option>
@@ -142,7 +142,7 @@
                     <div class="form-group col-md-6">
                         <label for="">Mata Pelajaran</label>
                         <select name="mata_pelajaran" id="mata_pelajaran" class="@error('mata_pelajaran') @enderror form-control mata_pelajaran">
-                            <option value="">Pilih mata Pelajaran</option>
+                            <option value="mata_pelajaran">Pilih mata Pelajaran</option>
                             @foreach ($mataPelajaran as $mp)
                                 <option id="mata_pelajaran" value="{{$mp->nama_mapel}}"required>{{$mp->nama_mapel}}</option>
                             @endforeach

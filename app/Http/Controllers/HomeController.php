@@ -25,10 +25,10 @@ class HomeController extends Controller
     }
     public function getMapel($jenjang)
     {
-        $getMapel = DB::table('mata_pelajaran')->where('jenjang', '=', '$jenjang')->get();
-        // return json_encode($getMapel);
-        dd(json_encode($getMapel));
-        die();
+        // $getMapel = DB::table('mata_pelajaran')->where('jenjang', '=', '$jenjang')->pluck("nama_mapel", "id");
+        $getMapel = DB::table('mata_pelajaran')->pluck("jenjang", "id");
+        // $getMapel = DB::table('mata_pelajaran')->where('jenjang', '=', '$jenjang')->get();
+        return json_encode($getMapel);
     }
     public function registrasiGuru(Request $request)
     {
