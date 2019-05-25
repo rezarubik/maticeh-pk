@@ -16,8 +16,9 @@ class HomeController extends Controller
     }
     public function registrasi()
     {
-        $mataPelajaran = DB::table('mata_pelajaran')->select('nama_mapel')->distinct()->get();
+        $mataPelajaran = DB::table('mata_pelajaran')->distinct()->get();
         $jenjang = DB::table('mata_pelajaran')->select('jenjang')->distinct()->get();
+        // $jenjang = DB::table('mata_pelajaran')->select('jenjang')->distinct()->get();
         return view('/home/registrasi', [
             "mataPelajaran" => $mataPelajaran,
             "jenjang" => $jenjang
@@ -25,8 +26,8 @@ class HomeController extends Controller
     }
     public function getMapel($jenjang)
     {
-        // $getMapel = DB::table('mata_pelajaran')->where('jenjang', '=', '$jenjang')->pluck("nama_mapel", "id");
-        $getMapel = DB::table('mata_pelajaran')->pluck("jenjang", "id");
+        $getMapel = DB::table('mata_pelajaran')->where('jenjang', $jenjang)->pluck("nama_mapel", "id");
+        // $getMapel = DB::table('mata_pelajaran')->pluck("nama_mapel", "jenjang");
         // $getMapel = DB::table('mata_pelajaran')->where('jenjang', '=', '$jenjang')->get();
         return json_encode($getMapel);
     }
@@ -74,7 +75,7 @@ class HomeController extends Controller
         //         'nama_mapel' => $request->mapel_guru
         //     ]
         // );
-        $getIdMapel = DB::table('mata_pelajaran')->where("nama_mapel", '=', $request->input('mata_pelajaran'))->get();
+        $getIdMapel = DB::table('mata_pelajaran')->where("id", $request->input('mata_pelajaran'))->get();
         DB::table('bahan_ajar')->insert(
             [
                 'id_guru' => $getIdUsers[0]->id,

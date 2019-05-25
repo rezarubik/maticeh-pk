@@ -142,9 +142,9 @@
                     <div class="form-group col-md-6">
                         <label for="">Mata Pelajaran</label>
                         <select name="mata_pelajaran" id="mata_pelajaran" class="@error('mata_pelajaran') @enderror form-control mata_pelajaran">
-                            <option value="mata_pelajaran">Pilih mata Pelajaran</option>
+                            <option value="">Pilih mata Pelajaran</option>
                             @foreach ($mataPelajaran as $mp)
-                                <option id="mata_pelajaran" value="{{$mp->nama_mapel}}"required>{{$mp->nama_mapel}}</option>
+                                <option id="mata_pelajaran" value="{{$mp->id}}"required>{{$mp->nama_mapel}}</option>
                             @endforeach
                             {{-- <option value="IPA SD">IPA SD</option>
                             <option value="IPS SD">IPS SD</option> --}}
