@@ -18,9 +18,12 @@
 // });
 
 Route::get('/', 'HomeController@index');
-Route::get('/registrasi', 'AdminController@registrasi');
+Route::get('/layanan', 'HomeController@layanan');
+Route::get('/kontakKami', 'HomeController@kontakKami');
+Route::get('/registrasi', 'HomeController@registrasi');
+Route::get('/getMapel/{jenjang}', 'HomeController@getMapel');
 // Regitrasi Guru
-Route::post('/registrasiGuru', 'AdminController@registrasiGuru');
+Route::post('/registrasiGuru', 'HomeController@registrasiGuru');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/dataGuru', 'AdminController@dataGuru');
@@ -31,6 +34,7 @@ Route::get('/pemesan', 'AdminController@pemesan');
 Route::get('/pemesanan', 'AdminController@pemesanan');
 Route::get('/absensi', 'AdminController@absensi');
 Route::get('/pembayaran', 'AdminController@pembayaran');
+// Route untuk akses mapel
 
 // update status
 Route::get('/dataGuru/approve/{id}', 'AdminController@approveGuru');

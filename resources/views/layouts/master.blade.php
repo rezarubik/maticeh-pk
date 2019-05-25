@@ -27,6 +27,13 @@
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/slick.css')}}">
     <!-- style CSS -->
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!-- jquery -->
+    {{-- <script src="{{asset('assets/plugins/jquery/jquery.js')}}"></script> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> --}}
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/jquery-1.12.1.min.js')}}"></script> --}}
 </head>
 <body>
     {{-- Navbar --}}
@@ -36,7 +43,7 @@
           <div class="row align-items-center">
               <div class="col-lg-12">
                   <nav class="navbar navbar-expand-lg navbar-light">
-                      <a class="navbar-brand" href="index.html"> <img src="{{asset('assets/img/icon/logo-maticeh-mini.png')}}" alt="MATICEH"></a>
+                      <a class="navbar-brand" href="/"> <img src="{{asset('assets/img/icon/logo-maticeh-mini.png')}}" alt="MATICEH"></a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse"
                           data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                           aria-expanded="false" aria-label="Toggle navigation">
@@ -47,13 +54,13 @@
                           id="navbarSupportedContent">
                           <ul class="navbar-nav align-items-center">
                               <li class="nav-item">
-                                  <a class="nav-link" href="bantuan.html">Bantuan</a>
+                                 <a class="nav-link" href="/bantuan">Bantuan</a>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link" href="Layanan.html">Layanan</a>
+                                  <a class="nav-link" href="/layanan">Layanan</a>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link" href="kontak.html">Kontak</a>
+                                  <a class="nav-link" href="/kontakKami">Kontak</a>
                               </li>
                               <li class="d-none d-lg-block">
                                   <a class="btn_1" href="/registrasi">Gabung</a>
@@ -141,11 +148,12 @@
     {{-- End Footer --}}
     
 </body>
- <!-- Jquery JS-->
- <script src="{{ asset('assets/vendor/jquery-3.2.1.min.js') }}"></script>
+
+     <!-- Jquery JS-->
+     {{-- <script src="{{ asset('assets/vendor/jquery-3.2.1.min.js') }}"></script> --}}
  <!-- Bootstrap JS-->
  <script src="{{ asset('assets/vendor/bootstrap-4.1/popper.min.js') }}"></script>
- <script src="{{ asset('assets/vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+ {{-- <script src="{{ asset('assets/vendor/bootstrap-4.1/bootstrap.min.js') }}"></script> --}}
  <!-- Vendor JS       -->
  <script src="{{ asset('assets/vendor/slick/slick.min.js') }}">
  </script>
@@ -153,7 +161,7 @@
  <script src="{{ asset('assets/vendor/animsition/animsition.min.js') }}"></script>
  <script src="{{ asset('assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
  </script>
- <script src="{{ asset('assets/vendor/counter-up/jquery.waypoints.min.js') }}"></script>
+ {{-- <script src="{{ asset('assets/vendor/counter-up/jquery.waypoints.min.js') }}"></script> --}}
  <script src="{{ asset('assets/vendor/counter-up/jquery.counterup.min.js') }}">
  </script>
  <script src="{{ asset('assets/vendor/circle-progress/circle-progress.min.js') }}"></script>
@@ -162,32 +170,27 @@
  <script src="{{ asset('assets/vendor/select2/select2.min.js') }}">
  </script>
 
- <!-- Main JS-->
+<!-- Main JS-->
+<script src="{{asset('assets/js/main.js')}}"></script>
+<!-- popper js -->
+<script src="{{asset('assets/js/popper.min.js')}}"></script>
+<!-- easing js -->
+<script src="{{asset('assets/js/jquery.magnific-popup.js')}}"></script>
+<!-- swiper js -->
+<script src="{{asset('assets/js/swiper.min.js')}}"></script>
  <script src="{{ asset('assets/js/mainAdmin.js') }}"></script>
  <script src="{{ asset('assets/js/move-kabupaten_kota.js') }}"></script>
-{{-- <script src="{{asset('assets/js/jquery-3.3.1.slim.min.js')}}"></script> --}}
-{{-- <script src="{{asset('assets/js/bootstrap.js')}}"></script> --}}
-<!-- jquery plugins here-->
-<!-- jquery -->
-{{-- <script src="{{asset('assets/js/jquery-1.12.1.min.js')}}"></script> --}}
-    <!-- popper js -->
-{{-- <script src="{{asset('assets/js/popper.min.js')}}"></script> --}}
-    <!-- bootstrap js -->
-{{-- <script src="{{asset('assets/js/bootstrap.min.js')}}"></script> --}}
-    <!-- easing js -->
-{{-- <script src="{{asset('assets/js/jquery.magnific-popup.js')}}"></script> --}}
-    <!-- swiper js -->
-{{-- <script src="{{asset('assets/js/swiper.min.js')}}"></script> --}}
-    <!-- swiper js -->
-{{-- <script src="{{asset('assets/js/masonry.pkgd.js')}}"></script> --}}
-    <!-- particles js -->
-{{-- <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script> --}}
-{{-- <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script> --}}
-    <!-- swiper js -->
-{{-- <script src="{{asset('assets/js/slick.min.js')}}"></script>
-<script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
-<script src="{{asset('assets/js/waypoints.min.js')}}"></script> --}}
-    <!-- custom js -->
-{{-- <script src="{{asset('assets/js/custom.js')}}"></script> --}}
-{{-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> --}}
+ <!-- swiper js -->
+ <script src="{{asset('assets/js/masonry.pkgd.js')}}"></script>
+ {{-- <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script> --}}
+ {{-- <script src="{{asset('assets/js/waypoints.min.js')}}"></script> --}}
+ {{-- Animation Navbar --}}
+ <script src="{{asset('assets/js/custom.js')}}"></script>
+ <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+
+ {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>

@@ -12,7 +12,11 @@
                     <thead>
                             <tr>
                                 <th>nama pemesan</th>
+                                <th>nama murid</th>
                                 <th>nama guru</th>
+                                <th>nama mata pelajaran</th>
+                                <th>jenjang</th>
+                                <th>tanggal pertemuan pertama</th>
                                 <th>alamat pemesan</th>
                                 <th>status</th>
                             </tr>
@@ -21,7 +25,11 @@
                                 @foreach ($query as $q)
                                 <tr class="tr-shadow">
                                 <td>{{$q->nama_pemesan}}</td>
+                                <td>{{$q->nama_murid}}</td>
                                 <td>{{$q->nama_guru}}</td>
+                                <td>{{$q->nama_mapel}}</td>
+                                <td>{{$q->jenjang}}</td>
+                                <td>{{$q->tgl_pertemuan_pertama}}</td>
                                 <td>{{$q->alamat_pemesan}}</td>
                                     <td>
                                         <span class="status--process">

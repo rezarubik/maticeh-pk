@@ -11,20 +11,22 @@
                         <table class="table table-data2">
                             <thead>
                                 <tr>
-                                    <th>nama pemesan</th>
                                     <th>nama guru</th>
+                                    <th>nama pemesan</th>
+                                    <th>nama murid</th>
                                     <th>mata pelajaran</th>
-                                    <th>tanggal</th>
+                                    <th>tanggal absen</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($query as $q)
                                 <tr class="tr-shadow">
-                                    <td>{{$q->nama_pemesan}}</td>
                                     <td>{{$q->nama_guru}}</td>
+                                    <td>{{$q->nama_pemesan}}</td>
+                                    <td>{{$q->nama_murid}}</td>
                                     <td>{{$q->nama_mapel}}</td>
                                     <td>
-                                        <span>{{$q->tanggal}}</span> 
+                                        <span>{{$q->created_at}}</span> 
                                     </td>
                                     {{-- <td>
                                         <div class="table-data-feature">

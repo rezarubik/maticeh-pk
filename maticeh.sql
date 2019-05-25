@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2019 at 07:04 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: May 22, 2019 at 05:13 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,11 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `absen` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `id_guru` int(11) NOT NULL,
-  `id_pemesan` int(11) NOT NULL,
-  `id_mapel` int(11) NOT NULL,
-  `tanggal` date DEFAULT NULL,
-  `jam` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_pemesanan` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -44,9 +40,8 @@ CREATE TABLE `absen` (
 -- Dumping data for table `absen`
 --
 
-INSERT INTO `absen` (`id`, `id_guru`, `id_pemesan`, `id_mapel`, `tanggal`, `jam`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 1, '2019-05-01', 'Pagi', 0, NULL, NULL),
-(2, 2, 3, 2, '2019-05-01', 'Siang', 1, NULL, NULL);
+INSERT INTO `absen` (`id`, `id_pemesanan`, `status`, `created_at`, `updated_at`) VALUES
+(3, 4, 1, '2019-05-21 17:00:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -192,8 +187,9 @@ INSERT INTO `pembayaran` (`id`, `id_pemesan`, `link`, `status`, `tgl_bayar`, `tg
 
 CREATE TABLE `pemesanan` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `id_guru` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_pemesan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_guru` int(11) NOT NULL,
+  `id_pemesan` int(11) NOT NULL,
+  `id_mapel` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -203,9 +199,11 @@ CREATE TABLE `pemesanan` (
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`id`, `id_guru`, `id_pemesan`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2', '1', 0, '2019-04-30 17:00:00', NULL),
-(2, '2', '3', 1, '2019-04-30 17:00:00', NULL);
+INSERT INTO `pemesanan` (`id`, `id_guru`, `id_pemesan`, `id_mapel`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 0, 0, '2019-04-30 17:00:00', NULL),
+(2, 2, 3, 0, 1, '2019-04-30 17:00:00', NULL),
+(3, 36, 38, 0, 2, '2019-05-15 12:44:16', NULL),
+(4, 36, 43, 0, 1, '2019-05-21 02:40:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -221,7 +219,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `alamat` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `provinsi` varchar(126) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kabupaten/kota` varchar(126) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kabupaten_kota` varchar(126) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `no_hp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -234,7 +232,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `alamat`, `provinsi`, `kabupaten/kota`, `status`, `role`, `no_hp`, `jenis_kelamin`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `alamat`, `provinsi`, `kabupaten_kota`, `status`, `role`, `no_hp`, `jenis_kelamin`, `created_at`, `updated_at`) VALUES
 (2, 'Reza', 'reza@email.com', '123321', NULL, 'Jl. Teluk Langsa 4 Blok C.8 No.4', '', '', 2, '2', '08646546', 'Laki-laki', '2019-04-28 07:21:12', NULL),
 (19, 'Priska', 'priska@email.com', 'admin', NULL, 'jakot', '', '', 2, '2', '124', 'perempuan', NULL, NULL),
 (20, 'Bella', 'bella@gmail.com', 'admina', NULL, 'asdajksd', '', '', 2, '2', '123', 'perempuan', NULL, NULL),
@@ -249,7 +247,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `alama
 (32, 'Teta', 'teta@gmail.com', 'admin', NULL, 'Teluk Langsa 4', '', '', 2, '2', '1234', 'Laki-Laki', '2019-05-13 18:16:42', '2019-05-13 18:16:42'),
 (33, 'priska', 'priskaputri15@gmail', 'friska15', NULL, 'jl. budi mulia', '', '', 1, '2', '082227738902', 'Perempuan', '2019-05-14 04:37:24', '2019-05-14 04:37:24'),
 (34, 'Asymala Permata Sari', 'asymalapsari@gmail.com', '123456', NULL, 'Lembah Nirmala 1, RT 11/14 No.47. Cimanggis, Depok', '', '', 0, '2', '081807879100', 'Perempuan', '2019-05-14 05:24:44', '2019-05-14 05:24:44'),
-(36, 'Muhammad Reza Pahlevi Y', 'rezarubik17@gmail.com', 'admin', NULL, 'Jl. Teluk Langsa 4 Blok C.8 No.4', 'DKI Jakarta', 'Jakarta Timur/Duren Sawit', 1, '2', '089501011011', 'Laki-Laki', '2019-05-14 16:57:25', '2019-05-14 16:57:25');
+(36, 'Muhammad Reza Pahlevi Y', 'rezarubik17@gmail.com', 'admin', NULL, 'Jl. Teluk Langsa 4 Blok C.8 No.4', 'DKI Jakarta', 'Jakarta Timur/Duren Sawit', 1, '2', '089501011011', 'Laki-Laki', '2019-05-14 16:57:25', '2019-05-14 16:57:25'),
+(37, 'Student', 'student@email.com', '123321', NULL, NULL, '', '', 0, '1', '0667364957', 'Laki-laki', '2019-05-15 07:10:54', '2019-05-15 12:10:54'),
+(38, 'Pilot', 'pilot@email.com', '123321', NULL, 'Jalan Pilot Gak Jadi', '', '', 1, '1', '0773349454', 'Laki-laki', '2019-05-15 08:33:18', '2019-05-15 13:33:18'),
+(39, 'Rogue', 'rogue@mail.com', '123321', NULL, 'Jl. Rogue', '', '', 1, '1', '06676485', 'Laki-laki', '2019-05-15 09:04:21', '2019-05-15 14:04:21'),
+(40, 'asymala', 'mala11@mail.com', '123321', NULL, 'gsgdhd', '', '', 1, '1', '5481558', 'Perempuan', '2019-05-18 11:26:42', '2019-05-18 16:26:42'),
+(41, 'nadiah', 'n@email.com', '123456', NULL, 'kalibata no 29', '', '', 1, '1', '087882219516', 'Perempuan', '2019-05-18 12:01:57', '2019-05-18 17:01:57'),
+(42, 'asd', 'asd@mail.com', '123456', NULL, 'hdhdhf', '', '', 1, '1', '54858855', 'Perempuan', '2019-05-18 13:57:59', '2019-05-18 18:57:59'),
+(43, 'Wraith', 'wraith@email.com', '123321', NULL, 'Outlands', 'DKI Jakarta', 'Jakarta Utara', 1, '1', '096739482', 'Perempuan', '2019-05-21 02:39:09', '2019-05-21 07:39:09');
 
 --
 -- Indexes for dumped tables
@@ -312,7 +317,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `guru`
@@ -348,13 +353,13 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
