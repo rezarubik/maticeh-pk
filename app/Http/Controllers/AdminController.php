@@ -19,7 +19,11 @@ class AdminController extends Controller
             ->where('users.role', '=', 2)
             ->where('users.status', '=', 0)
             ->get();
-        $queryMapel = DB::table('mata_pelajaran')->get();
+        // dd($query);
+        // die();
+        $queryMapel = DB::table('bahan_ajar')->join('mata_pelajaran', 'mata_pelajaran.id', '=', 'bahan_ajar.id_mapel')->get();
+        // dd($queryMapel);
+        // die();
 
         return view('/adminPages/dataGuru', [
             "act" => $act,
