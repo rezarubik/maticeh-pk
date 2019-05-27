@@ -59,7 +59,7 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                             <li class="">
-                                <a class="" href="/admin">
+                                <a class="" href="/dashboard">
                                     <i class="fas fa-tachometer-alt"></i>Dashboard
                                 </a>
                             </li>
@@ -119,7 +119,7 @@
                                     echo "active";
                                 }
                             ?>">
-                            <a href="/admin">
+                            <a href="/dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li class="has-sub <?php 

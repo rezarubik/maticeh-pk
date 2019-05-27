@@ -38,7 +38,7 @@ class AdminController extends Controller
             ->where('users.role', '=', 2)
             ->where('users.status', '=', 1)
             ->get();
-        $queryMapel = DB::table('mata_pelajaran')->get();
+        $queryMapel = DB::table('bahan_ajar')->join('mata_pelajaran', 'mata_pelajaran.id', '=', 'bahan_ajar.id_mapel')->get();
 
         return view('/adminPages/dataGuruApprove', [
             "act" => $act,
@@ -81,7 +81,7 @@ class AdminController extends Controller
             ->where('users.status', '=', 2)
             ->orWhere('users.status', '=', 3)
             ->get();
-        $queryMapel = DB::table('mata_pelajaran')->get();
+        $queryMapel = DB::table('bahan_ajar')->join('mata_pelajaran', 'mata_pelajaran.id', '=', 'bahan_ajar.id_mapel')->get();
 
         return view('/adminPages/dataGuruDissapprove', [
             "act" => $act,

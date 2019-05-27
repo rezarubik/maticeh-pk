@@ -25,7 +25,9 @@ Route::get('/getMapel/{jenjang}', 'HomeController@getMapel');
 // Regitrasi Guru
 Route::post('/registrasiGuru', 'HomeController@registrasiGuru');
 
-Route::get('/admin', 'AdminController@index');
+// Login admin
+// Route::get('/admin', 'AdminController@LoginAdmin');
+Route::get('/dashboard', 'AdminController@index');
 Route::get('/dataGuru', 'AdminController@dataGuru');
 Route::get('/dataGuruApprove', 'AdminController@dataGuruApprove');
 Route::get('/dataGuruDissapprove', 'AdminController@dataGuruDissapprove');
