@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function registrasi()
     {
         $mataPelajaran = DB::table('mata_pelajaran')->distinct()->get();
-        $jenjang = DB::table('mata_pelajaran')->select('jenjang')->distinct()->get();
+        $jenjang = DB::table('jenjang')->get();
         // $jenjang = DB::table('mata_pelajaran')->select('jenjang')->distinct()->get();
         return view('/home/registrasi', [
             "mataPelajaran" => $mataPelajaran,

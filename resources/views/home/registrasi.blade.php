@@ -135,7 +135,7 @@
                         <select name="jenjang" id="jenjang" class="form-control jenjang">
                             <option value="">Pilih Jenjang</option>
                             @foreach ($jenjang as $j)
-                            <option value="{{$j->jenjang}}"required>{{$j->jenjang}}</option>
+                            <option value="{{$j->id_jenjang}}"required>{{$j->jenjang}}</option>
                             @endforeach
                         </select>
                     </div>

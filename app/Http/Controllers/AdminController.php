@@ -163,7 +163,7 @@ class AdminController extends Controller
     public function pemesanan()
     {
         $act = 'pemesanan';
-        $query = DB::select(DB::raw("SELECT table_pemesan.name as nama_pemesan, pemesanan.nama_murid as nama_murid,table_guru.name as nama_guru, mata_pelajaran.nama_mapel as nama_mapel,mata_pelajaran.jenjang as jenjang , pemesanan.tgl_pertemuan_pertama as tgl_pertemuan_pertama , table_pemesan.alamat as alamat_pemesan, pemesanan.status, pemesanan.created_at as created_at, pemesanan.updated_at as updated_at FROM pemesanan, (select * from users where role = 1) table_pemesan, (select * from users where role = 2) table_guru, mata_pelajaran WHERE pemesanan.id_pemesan = table_pemesan.id && pemesanan.id_guru = table_guru.id && pemesanan.id_mapel = mata_pelajaran.id"));
+        $query = DB::select(DB::raw("SELECT table_pemesan.name as nama_pemesan, pemesanan.nama_murid as nama_murid,table_guru.name as nama_guru, mata_pelajaran.nama_mapel as nama_mapel, jenjang.jenjang as jenjang , pemesanan.tgl_pertemuan_pertama as tgl_pertemuan_pertama , table_pemesan.alamat as alamat_pemesan, pemesanan.status, pemesanan.created_at as created_at, pemesanan.updated_at as updated_at FROM pemesanan, (select * from users where role = 1) table_pemesan, (select * from users where role = 2) table_guru, mata_pelajaran, jenjang WHERE pemesanan.id_pemesan = table_pemesan.id && pemesanan.id_guru = table_guru.id && pemesanan.id_mapel = mata_pelajaran.id && mata_pelajaran.jenjang = jenjang.id_jenjang"));
         return view('/adminPages/pemesanan', [
             "act" => $act,
             "query" => $query
