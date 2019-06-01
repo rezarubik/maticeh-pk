@@ -12,10 +12,36 @@
         // 2 -> guru
 
 	//Import File Koneksi Database
-	require_once('connection.php');
-	
+require_once('connection.php');
+if($_SERVER['REQUEST_METHOD']=='POST'){
+
 	//Membuat SQL Query
-	$sql = "SELECT users.*, guru.direktori_cv, guru.institusi FROM users LEFT OUTER JOIN guru on users.id = guru.id_guru where users.role = 2;";
+	$sql = "SELECT users.*, guru.direktori_cv, guru.institusi FROM users, guru, bahan_ajar, mata_pelajaran WHERE users.role = 2 && users.id = guru.id_guru && bahan_ajar.id_mapel = mata_pelajaran.id && bahan_ajar.id_guru = users.id";
+
+	// $nama_murid = $_POST['nama_murid'];
+	$nama_jenjang = $_POST['nama_jenjang'];
+	// $kelas = $_POST['kelas'];
+	$mapel_name = $_POST['mapel_name'];
+	$provinsi = $_POST['provinsi'];
+	$kabupaten_kota = $_POST['kabupaten_kota'];
+	$jenis_kelamin = $_POST['jenis_kelamin'];
+	// $tgl_pertemuan_pertama = $_POST['tgl_pertemuan_pertama'];
+
+	if($provinsi != ""){
+		$sql = $sql." && users.provinsi = '".$provinsi."'";
+	}
+
+	if($kabupaten_kota != ""){
+		$sql = $sql." && users.kabupaten_kota = '".$kabupaten_kota."'";
+	}
+
+	if($jenis_kelamin != "Bebas"){
+		$sql = $sql." && users.jenis_kelamin = '".$jenis_kelamin."'";
+	}
+
+	if($mapel_name != ""){
+		$sql = $sql." && mata_pelajaran.nama_mapel = '".$mapel_name."'";
+	}
 	
 	//Mendapatkan Hasil
 	$r = mysqli_query($con,$sql);
@@ -49,4 +75,5 @@
 	echo json_encode(array('result'=>$result));
 	
 	mysqli_close($con);
+}
 ?>
