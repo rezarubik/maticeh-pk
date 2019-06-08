@@ -18,10 +18,12 @@
 // });
 
 Route::get('/', 'HomeController@index');
+Route::get('/bantuan', 'HomeController@bantuan');
 Route::get('/layanan', 'HomeController@layanan');
 Route::get('/kontakKami', 'HomeController@kontakKami');
 Route::get('/registrasi', 'HomeController@registrasi');
 Route::get('/getMapel/{jenjang}', 'HomeController@getMapel');
+Route::get('/getKabKota/{provinsi}', 'HomeController@getKabKota');
 // Regitrasi Guru
 Route::post('/registrasiGuru', 'HomeController@registrasiGuru');
 

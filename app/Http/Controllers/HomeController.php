@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\MessageBag;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -17,11 +18,14 @@ class HomeController extends Controller
     public function registrasi()
     {
         $mataPelajaran = DB::table('mata_pelajaran')->distinct()->get();
+        $provKabot = DB::table('prov_kabot')->distinct()->get();
         $jenjang = DB::table('jenjang')->get();
-        // $jenjang = DB::table('mata_pelajaran')->select('jenjang')->distinct()->get();
+        $provinsi = DB::table('provinsi')->get();
         return view('/home/registrasi', [
             "mataPelajaran" => $mataPelajaran,
-            "jenjang" => $jenjang
+            "provKabot" => $provKabot,
+            "jenjang" => $jenjang,
+            "provinsi" => $provinsi
         ]);
     }
     public function getMapel($jenjang)
@@ -31,8 +35,14 @@ class HomeController extends Controller
         // $getMapel = DB::table('mata_pelajaran')->where('jenjang', '=', '$jenjang')->get();
         return json_encode($getMapel);
     }
+    public function getKabKota($provinsi)
+    {
+        $getKabKota = DB::table('prov_kabot')->where('provinsi', $provinsi)->pluck("kab_kota", "id");
+        return json_encode($getKabKota);
+    }
     public function registrasiGuru(Request $request)
     {
+        // dd($request);
         // $request->validate([
         //     'name' => 'required|min:5|max:20',
         //     'email' => 'required',
@@ -44,19 +54,24 @@ class HomeController extends Controller
         //     'mata_pelajaran' => 'required',
         //     'institusi' => 'required',
         //     'mapel_guru' => 'required',
-        //     'file' => 'required',
+        //     'jenjang' => 'required'
         // ]);
+        // dd("berhasil");
         $file = $request->file('file');
         $folderCV = 'cv';
         $data = $file->move($folderCV, $file->getClientOriginalName());
+        $getProvinsi = DB::table('provinsi')->where("id_provinsi", $request->input('provinsi'))->get();
+        $getKabKot = DB::table('prov_kabot')->where("id", $request->input('kab_kota'))->get();
         DB::table('users')->insert(
             [
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
                 'alamat' => $request->address,
-                'provinsi' => $request->provinsi,
-                'kabupaten_kota' => $request->kabupatenKota,
+                // 'provinsi' => $request->provinsi,
+                'provinsi' => $getProvinsi[0]->provinsi,
+                // 'kabupaten_kota' => $request->kab_kota,
+                'kabupaten_kota' => $getKabKot[0]->kab_kota,
                 'status' => 0,
                 'role' => 2,
                 'no_hp' => $request->no_handphone,
@@ -76,6 +91,7 @@ class HomeController extends Controller
         //     ]
         // );
         $getIdMapel = DB::table('mata_pelajaran')->where("id", $request->input('mata_pelajaran'))->get();
+        // $getIdMapel = DB::table('provinsi')->where("id", $request->input('provinsi'))->get();
         DB::table('bahan_ajar')->insert(
             [
                 'id_guru' => $getIdUsers[0]->id,
@@ -93,5 +109,9 @@ class HomeController extends Controller
     public function kontakKami()
     {
         return view('home/kontak');
+    }
+    public function bantuan()
+    {
+        return view('home/bantuan');
     }
 }

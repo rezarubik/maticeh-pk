@@ -1,8 +1,16 @@
 @extends('layouts.master')
 @section('title', 'Pendaftaran Guru')
+@section('moreCss')
+<style>
+    .main_menu .main-menu-item ul li .nav-link{
+        /* color: #ffffff; */
+        color: #333333;
+    }
+</style>
+@endsection
 @section('content')
     <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
+    {{-- <section class="breadcrumb breadcrumb_bg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -14,16 +22,16 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- breadcrumb end-->
 
     <!-- form start -->
     <section class="special_cource padding_top">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-5">
+                <div class="col-xl-12">
                     <div class="section_tittle text-center">
-                        <h2>Form Pendaftaran</h2>
+                        <h2>Form Pendaftaran Guru</h2>
                     </div>
                     {{-- Belum ada notifikasi sukses registrasi --}}
                 </div>
@@ -67,13 +75,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="provinsi">Provinsi</label>
-                        <select name="provinsi" class="form-control" id="provinsi">
+                        <select name="provinsi" id="provinsi" class="form-control provinsi">
                             <option>-- Pilih-Provinsi --</option>
-                            <option value="dki">DKI Jakarta</option>
-                            <option value="pjabar">Jawa Barat</option>
-                            <option value="pjateng">Jawa Tengah</option>
-                            <option value="pjatim">Jawa Timur</option>
-                            <option value="pbanten">Banten</option>
+                            @foreach ($provinsi as $p)
+                                <option value="{{$p->id_provinsi}}">{{$p->provinsi}}</option>
+                            @endforeach
                         </select>
                         {{-- <input type="text" class="@error('provinsi') @enderror form-control" id="provinsi" placeholder="Provinsi tempat tinggal Anda" name="provinsi" value="{{old('provinsi')}}"required> --}}
                         @error('provinsi')
@@ -82,41 +88,14 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="kota">Kabupaten/Kota</label>
-                        <select name="kabupatenKota" class="form-control" id="kota" onchange="change();">
-                            <option>-- Pilih-Kabupaten/Kota</option>    
-                            <option value="jkt" name="jkt">Jakarta Utara</option>
-                            <option value="jkt" name="jkt">Jakarta Barat</option>
-                            <option value="jkt" name="jkt">Jakarta Timur</option>
-                            <option value="jkt" name="jkt">Jakarta Selatan</option>
-                            <option value="jkt" name="jkt">Jakarta Pusat</option>
-                            
-                            <option value="jabar" name="jabar">Kab. Bogor</option>
-                            <option value="jabar" name="jabar">Kab. Indramayu</option>
-                            <option value="jabar" name="jabar">Kab. Majalengka</option>
-                            <option value="jabar" name="jabar">Kota Bogor</option>
-                            <option value="jabar" name="jabar">Kota Depok</option>
-                            
-                            <option value="jateng" name="jateng">Kab. Banjar Negara</option>
-                            <option value="jateng" name="jateng">Kab. Banyumas</option>
-                            <option value="jateng" name="jateng">Kab. Batang</option>
-                            <option value="jateng" name="jateng">Kota Magelang</option>
-                            <option value="jateng" name="jateng">Kota Semarang</option>
-                            
-                            <option value="jatim" name="jatim">Kab. Sampang</option>
-                            <option value="jatim" name="jatim">Kab. Siduarjo</option>
-                            <option value="jatim" name="jatim">Kab. Sumenep</option>
-                            <option value="jatim" name="jatim">Kota Kediri</option>
-                            <option value="jatim" name="jatim">Kota Madiun</option>
-                            
-                            <option value="banten" name="banten">Kab. Lebak</option>
-                            <option value="banten" name="banten">Kab. Pandeglang</option>
-                            <option value="banten" name="banten">Kab. Serang</option>
-                            <option value="banten" name="banten">Kota Cilegon</option>
-                            <option value="banten" name="banten">Kota Serang</option>
-                            
+                        <select name="kab_kota" id="kab_kota" class="form-control kab_kota">
+                            <option>-- Pilih-Kabupaten/Kota</option>   
+                            @foreach ($provKabot as $pbk)
+                                <option value="{{$pbk->id}}">{{$pbk->kab_kota}}</option>
+                            @endforeach 
                         </select>
                         {{-- <input type="text" class="@error('kabupatenKota') @enderror form-control" id="kabupatenKota" placeholder="Provinsi tempat tinggal Anda" name="kabupatenKota" value="{{old('kabupatenKota')}}"required> --}}
-                        @error('kabupatenKota')
+                        @error('kab_kota')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -230,5 +209,35 @@
                    }
                 });
         });
-        </script>
+    </script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ()
+        {
+                jQuery('select[name="provinsi"]').on('change',function(){
+                   var provinsiStr = jQuery(this).val();
+                   if(provinsiStr)
+                   {
+                      $.ajax({
+                         url : '/getKabKota/' +provinsiStr,
+                         type : "GET",
+                         data : {"_token":"{{ csrf_token() }}"},
+                         dataType : "json",
+                         success:function(data)
+                         {
+                            console.log(data);
+                            jQuery('select[name="kab_kota"]').empty();
+                            jQuery.each(data, function(key,value){
+                               $('select[name="kab_kota"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                         }
+                      });
+                   }
+                   else
+                   {
+                      $('select[name="kab_kota"]').empty();
+                   }
+                });
+        });
+    </script>
+        
 @endsection

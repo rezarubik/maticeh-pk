@@ -1,6 +1,15 @@
 @extends('layouts/master')
 @section('title', 'Layanan')
-
+@section('moreCss')
+<style>
+    .main_menu .main-menu-item ul li .nav-link{
+        color: #ffffff;
+    }
+    .menu_fixed .main-menu-item ul li .nav-link{
+        color: #000;
+    }
+</style>
+@endsection
 @section('content')
     <!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">

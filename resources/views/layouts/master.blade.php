@@ -8,11 +8,13 @@
     <link rel="icon" href="#">
     <link rel="shortcut icon" href="{{asset('assets/img/icon/icon-maticeh.png')}}" type="image/x-icon">
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
+    {{-- Admin CSS --}}
     <!-- Fontfaces CSS-->
     <link href="{{ asset('assets/css/font-face.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('assets/vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('assets/vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('assets/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+    {{-- End Admin CSS --}}
     <link rel="stylesheet" style="text/css" href="{{asset('assets/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     <!-- owl carousel CSS -->
@@ -27,7 +29,11 @@
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/slick.css')}}">
     <!-- style CSS -->
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/style.css')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    @yield('moreCss')
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- jquery -->
     {{-- <script src="{{asset('assets/plugins/jquery/jquery.js')}}"></script> --}}
@@ -63,7 +69,7 @@
                                   <a class="nav-link" href="/kontakKami">Kontak</a>
                               </li>
                               <li class="d-none d-lg-block">
-                                  <a class="btn_1" href="/registrasi">Gabung</a>
+                                  <a class="btn_1" href="/registrasi">Gabung Menjadi Guru</a>
                               </li>
                           </ul>
                       </div>
@@ -80,6 +86,10 @@
     {{-- Content --}}
     @yield('content')
     {{-- End Content --}}
+
+    <!-- back to top start -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- back to top end -->
 
     {{-- Footer --}}
     <!-- footer part start-->
@@ -122,7 +132,7 @@
                       <div class="contact_info">
                           <p><span> Address :</span> Hath of it fly signs bear be one blessed after </p>
                           <p><span> Phone :</span> +2 36 265 (8060)</p>
-                          <p><span> Email : </span>info@gmail.com </p>
+                          <p><span> Email : </span>maticeh@gmail.com </p>
                       </div>
                   </div>
               </div>
@@ -146,14 +156,15 @@
   <!-- footer part end-->
 
     {{-- End Footer --}}
+
+    <a id="button"></a>
     
 </body>
 
-     <!-- Jquery JS-->
-     {{-- <script src="{{ asset('assets/vendor/jquery-3.2.1.min.js') }}"></script> --}}
+{{-- Admin --}}
+
  <!-- Bootstrap JS-->
  <script src="{{ asset('assets/vendor/bootstrap-4.1/popper.min.js') }}"></script>
- {{-- <script src="{{ asset('assets/vendor/bootstrap-4.1/bootstrap.min.js') }}"></script> --}}
  <!-- Vendor JS       -->
  <script src="{{ asset('assets/vendor/slick/slick.min.js') }}">
  </script>
@@ -167,30 +178,28 @@
  <script src="{{ asset('assets/vendor/circle-progress/circle-progress.min.js') }}"></script>
  <script src="{{ asset('assets/vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
  <script src="{{ asset('assets/vendor/chartjs/Chart.bundle.min.js') }}"></script>
- <script src="{{ asset('assets/vendor/select2/select2.min.js') }}">
- </script>
+ <script src="{{ asset('assets/vendor/select2/select2.min.js') }}"></script>
 
-<!-- Main JS-->
-<script src="{{asset('assets/js/main.js')}}"></script>
-<!-- popper js -->
+ {{-- End admin --}}
+
+ <!-- popper js -->
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <!-- easing js -->
 <script src="{{asset('assets/js/jquery.magnific-popup.js')}}"></script>
 <!-- swiper js -->
 <script src="{{asset('assets/js/swiper.min.js')}}"></script>
  <script src="{{ asset('assets/js/mainAdmin.js') }}"></script>
- <script src="{{ asset('assets/js/move-kabupaten_kota.js') }}"></script>
  <!-- swiper js -->
  <script src="{{asset('assets/js/masonry.pkgd.js')}}"></script>
- {{-- <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script> --}}
- {{-- <script src="{{asset('assets/js/waypoints.min.js')}}"></script> --}}
+ {{-- Back ToTop --}}
+ <script src="{{asset('assets/js/backtotop.js')}}"></script>
  {{-- Animation Navbar --}}
  <script src="{{asset('assets/js/custom.js')}}"></script>
  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
-
- {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
+ {{-- From resources --}}
+ <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"><script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{{-- End From resources --}}
 </html>
