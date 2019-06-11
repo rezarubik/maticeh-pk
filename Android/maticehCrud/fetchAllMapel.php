@@ -5,7 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_jenjang = $_POST['id_jenjang'];
     $nama_jenjang = $_POST['nama_jenjang'];
 
-    //Jika jenjang tidak ada isinya
     $sql = "SELECT mata_pelajaran.*, jenjang.jenjang as nama_jenjang FROM mata_pelajaran, jenjang where mata_pelajaran.jenjang = '$id_jenjang' && jenjang.id_jenjang = mata_pelajaran.jenjang";
     //Mendapatkan Hasil
     try {

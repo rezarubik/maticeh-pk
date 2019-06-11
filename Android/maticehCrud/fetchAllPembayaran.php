@@ -1,8 +1,7 @@
 <?php
-    //Import File Koneksi Database
-	require_once('connection.php');
-	
-	$sql = "SELECT * FROM pembayaran";
+require_once('connection.php');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $sql = "SELECT * FROM pembayaran";
     //Mendapatkan Hasil
     try {
         $r = mysqli_query($con, $sql);
@@ -26,4 +25,5 @@
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
     mysqli_close($con);
+}
 ?>
