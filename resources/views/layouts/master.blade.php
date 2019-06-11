@@ -16,6 +16,7 @@
     <link href="{{ asset('assets/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
     {{-- End Admin CSS --}}
     <link rel="stylesheet" style="text/css" href="{{asset('assets/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/owl.carousel.min.css')}}">
@@ -27,6 +28,8 @@
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/magnific-popup.css')}}">
     <!-- swiper CSS -->
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/slick.css')}}">
+    {{-- multipleform CSS --}}
+    <link rel="stylesheet" style="text/css" href="{{asset('assets/css/multipleform.css')}}">
     <!-- style CSS -->
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/style.css')}}">
 
@@ -39,6 +42,7 @@
     {{-- <script src="{{asset('assets/plugins/jquery/jquery.js')}}"></script> --}}
     {{-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> --}}
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+
     {{-- <script src="{{asset('assets/js/jquery-1.12.1.min.js')}}"></script> --}}
 </head>
 <body>
@@ -46,7 +50,7 @@
     <!--::header part start::-->
     <header class="main_menu home_menu">
       <div class="container">
-          <div class="row align-items-center">
+        <div class="row align-items-center">
               <div class="col-lg-12">
                   <nav class="navbar navbar-expand-lg navbar-light">
                       <a class="navbar-brand" href="/"> <img src="{{asset('assets/img/icon/logo-maticeh-mini.png')}}" alt="MATICEH"></a>
@@ -160,7 +164,8 @@
     <a id="button"></a>
     
 </body>
-
+    {{-- multiple form --}}
+    {{-- <script src="{{asset('assets/js/multipleform.js')}}"></script> --}}
 {{-- Admin --}}
 
  <!-- Bootstrap JS-->
@@ -181,6 +186,7 @@
  <script src="{{ asset('assets/vendor/select2/select2.min.js') }}"></script>
 
  {{-- End admin --}}
+ 
 
  <!-- popper js -->
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
