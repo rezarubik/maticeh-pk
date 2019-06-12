@@ -13,7 +13,7 @@
                             <h5 class="line-1 anim-typewriter">Tidak ada kata terlambat untuk belajar</h5>
                             <h1>Maticeh membantu Anda menemukan guru yang tepat</h1>
                             <p>
-                                Belajarlah untuk membuat dunia lebih baik!
+                                Belajarlah untk membuat dunia lebih baik!
                             </p>
                             <!-- <a href="#" class="btn_2">Get Started </a> -->
                         </div>
