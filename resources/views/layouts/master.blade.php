@@ -43,7 +43,7 @@
     {{-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> --}}
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 
-    {{-- <script src="{{asset('assets/js/jquery-1.12.1.min.js')}}"></script> --}}
+    <script src="{{asset('assets/js/jquery-1.12.1.min.js')}}"></script>
 </head>
 <body>
     {{-- Navbar --}}

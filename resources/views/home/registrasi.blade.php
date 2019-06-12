@@ -93,7 +93,7 @@
                         @endforeach 
                     </select>
                   </p>
-                  <p class="mt-3"><input type="text" class="@error('address') @enderror form-control" id="inputAddress" placeholder="Alamat Lengkap Anda" oninput="this.className = ''" name="phone"></p>
+                  <p class="mt-3"><input type="text" class="@error('address') @enderror form-control" id="inputAddress" placeholder="Alamat Lengkap Anda" oninput="this.className = ''" name="address"></p>
                 </div>
                 <div class="tab">Kelengkapan Data Guru:
                   <p class="mt-3">
