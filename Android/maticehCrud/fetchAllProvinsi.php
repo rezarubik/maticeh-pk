@@ -1,7 +1,7 @@
 <?php 
     require_once('connection.php');
 
-        $sql = "SELECT DISTINCT(provinsi) FROM prov_kabot";
+        $sql = "SELECT * FROM provinsi";
 
         try {
             $r = mysqli_query($con, $sql);
@@ -9,6 +9,7 @@
 
             while ($row = mysqli_fetch_array($r)) {
                 array_push($result, array(
+                    "id_provinsi"=>$row['id_provinsi'],
                     "provinsi"=>$row['provinsi']
                 ));
             }

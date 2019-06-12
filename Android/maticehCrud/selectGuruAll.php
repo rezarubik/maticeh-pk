@@ -16,7 +16,7 @@ require_once('connection.php');
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
 	//Membuat SQL Query
-	$sql = "SELECT users.*, guru.direktori_cv, guru.institusi FROM users, guru, bahan_ajar, mata_pelajaran WHERE users.role = 2 && users.id = guru.id_guru && bahan_ajar.id_mapel = mata_pelajaran.id && bahan_ajar.id_guru = users.id";
+	$sql = "SELECT DISTINCT(users.id), users.*, guru.direktori_cv, guru.institusi FROM users, guru, bahan_ajar, mata_pelajaran WHERE users.role = 2 && users.id = guru.id_guru && bahan_ajar.id_mapel = mata_pelajaran.id && bahan_ajar.id_guru = users.id && users.status = 1";
 
 	// $nama_murid = $_POST['nama_murid'];
 	$nama_jenjang = $_POST['nama_jenjang'];
@@ -27,19 +27,19 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	$jenis_kelamin = $_POST['jenis_kelamin'];
 	// $tgl_pertemuan_pertama = $_POST['tgl_pertemuan_pertama'];
 
-	if($provinsi != ""){
+	if($provinsi != "-"){
 		$sql = $sql." && users.provinsi = '".$provinsi."'";
 	}
 
-	if($kabupaten_kota != ""){
+	if($kabupaten_kota != "-"){
 		$sql = $sql." && users.kabupaten_kota = '".$kabupaten_kota."'";
 	}
 
-	if($jenis_kelamin != "Bebas"){
+	if($jenis_kelamin != "-"){
 		$sql = $sql." && users.jenis_kelamin = '".$jenis_kelamin."'";
 	}
 
-	if($mapel_name != ""){
+	if($mapel_name != "-"){
 		$sql = $sql." && mata_pelajaran.nama_mapel = '".$mapel_name."'";
 	}
 	

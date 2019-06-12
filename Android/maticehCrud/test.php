@@ -2,28 +2,26 @@
     //Import File Koneksi Database
 	require_once('connection.php');
 	
-	$sql = "SELECT * FROM pembayaran";
-    //Mendapatkan Hasil
-    try {
-        $r = mysqli_query($con, $sql);
-        $result = array();
+	$provinsi = "DKI Jakarta";
 
-        while ($row = mysqli_fetch_array($r)) {
-            array_push($result, array(
-                "id" => $row['id'],
-                "id_pemesanan" => $row['id_pemesanan'],
-                "jumlah_pertemuan" => $row['jumlah_pertemuan'],
-                "tanggal_bayar" => $row['tanggal_bayar'],
-                "tanggal_verifikasi" => $row['tanggal_verifikasi'],
-                "total_pembayaran" => $row['total_pembayaran'],
-                "status" => $row['status']
-            ));
+        $sql = "SELECT pk.id, pk.kab_kota, p.provinsi FROM prov_kabot pk, provinsi p WHERE pk.provinsi = p.id_provinsi && p.provinsi = '$provinsi'";
+
+        try {
+            $r = mysqli_query($con, $sql);
+            $result = array();
+
+            while ($row = mysqli_fetch_array($r)) {
+                array_push($result, array(
+                    "id"=>$row['id'],
+                    "kabupaten_kota" => $row['kab_kota'],
+                    "provinsi"=>$row['provinsi']
+                ));
+            }
+            //Menampilkan dalam format JSON
+            echo json_encode(array('result' => $result));
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
 
-        //Menampilkan dalam format JSON
-        echo json_encode(array('result' => $result));
-    } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
-    }
     mysqli_close($con);
 ?>
