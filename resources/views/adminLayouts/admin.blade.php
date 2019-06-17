@@ -43,7 +43,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="/admin">
+                        <a class="logo" href="/dashboard">
                             <img src="{{ asset('assets/img/icon/logo-maticeh-mini.png') }}" alt="MATICEH" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">

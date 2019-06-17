@@ -23,6 +23,8 @@ Route::get('/layanan', 'HomeController@layanan');
 Route::get('/kontakKami', 'HomeController@kontakKami');
 Route::get('/registrasi', 'HomeController@registrasi');
 Route::get('/getMapel/{jenjang}', 'HomeController@getMapel');
+Route::get('/getMapel2/{jenjang2}', 'HomeController@getMapel2');
+Route::get('/getMapel3/{jenjang3}', 'HomeController@getMapel3');
 Route::get('/getKabKota/{provinsi}', 'HomeController@getKabKota');
 // Regitrasi Guru
 Route::post('/registrasiGuru', 'HomeController@registrasiGuru');
@@ -44,4 +46,6 @@ Route::get('/pembayaran', 'AdminController@pembayaran');
 Route::get('/dataGuru/approve/{id}', 'AdminController@approveGuru');
 Route::get('/dataGuru/disapprove/{id}', 'AdminController@disapproveGuru');
 Route::get('/dataGuru/trash/{id}', 'AdminController@trashGuru');
-// Route::get('/disapproveGuru/{id}', 'AdminController@disapproveGuru');
+// Status Pembayaran
+Route::get('/pembayaran/approve/{id}', 'AdminController@approvePembayaran');
+Route::get('/pembayaran/decline/{id}', 'AdminController@declinePembayaran');

@@ -2,8 +2,17 @@
 @section('title', 'Layanan')
 @section('moreCss')
 <style>
-    .main_menu .main-menu-item ul li .nav-link{
+    @media (max-width: 576px) .main_menu .main-menu-item ul li .nav-link {
         color: #ffffff;
+        font-size: 15px;
+        padding: 0px 24px;
+        font-family: "Roboto", sans-serif;
+    }
+    .main_menu .main-menu-item ul li .nav-link {
+        color: #ffffff;
+        font-size: 15px;
+        padding: 0px 24px;
+        font-family: "Roboto", sans-serif;
     }
     .menu_fixed .main-menu-item ul li .nav-link{
         color: #000;

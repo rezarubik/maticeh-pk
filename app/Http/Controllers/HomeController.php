@@ -31,9 +31,17 @@ class HomeController extends Controller
     public function getMapel($jenjang)
     {
         $getMapel = DB::table('mata_pelajaran')->where('jenjang', $jenjang)->pluck("nama_mapel", "id");
-        // $getMapel = DB::table('mata_pelajaran')->pluck("nama_mapel", "jenjang");
-        // $getMapel = DB::table('mata_pelajaran')->where('jenjang', '=', '$jenjang')->get();
         return json_encode($getMapel);
+    }
+    public function getMapel2($jenjang2)
+    {
+        $getMapel2 = DB::table('mata_pelajaran')->where('jenjang', $jenjang2)->pluck("nama_mapel", "id");
+        return json_encode($getMapel2);
+    }
+    public function getMapel3($jenjang3)
+    {
+        $getMapel3 = DB::table('mata_pelajaran')->where('jenjang', $jenjang3)->pluck("nama_mapel", "id");
+        return json_encode($getMapel3);
     }
     public function getKabKota($provinsi)
     {
@@ -43,20 +51,7 @@ class HomeController extends Controller
     public function registrasiGuru(Request $request)
     {
         // dd($request);
-        // $request->validate([
-        //     'name' => 'required|min:5|max:20',
-        //     'email' => 'required',
-        //     'password' => 'required|min:4',
-        //     'address' => 'required',
-        //     'provinsi' => 'required',
-        //     'kabupatenKota' => 'required',
-        //     'no_handphone' => 'required',
-        //     'mata_pelajaran' => 'required',
-        //     'institusi' => 'required',
-        //     'mapel_guru' => 'required',
-        //     'jenjang' => 'required'
-        // ]);
-        // dd("berhasil");
+        // die();
         $file = $request->file('file');
         $folderCV = 'cv';
         $data = $file->move($folderCV, $file->getClientOriginalName());
@@ -66,11 +61,10 @@ class HomeController extends Controller
             [
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                // 'password' => Hash::make($request->password),
+                'password' => md5($request->password),
                 'alamat' => $request->address,
-                // 'provinsi' => $request->provinsi,
                 'provinsi' => $getProvinsi[0]->provinsi,
-                // 'kabupaten_kota' => $request->kab_kota,
                 'kabupaten_kota' => $getKabKot[0]->kab_kota,
                 'status' => 0,
                 'role' => 2,
@@ -84,22 +78,30 @@ class HomeController extends Controller
             'institusi' => $request->institusi,
             'direktori_cv' => $data
         ]);
-        // DB::table('mata_pelajaran')->insert(
-        //     [
-        //         'id_guru' => $getIdUsers[0]->id,
-        //         'nama_mapel' => $request->mapel_guru
-        //     ]
-        // );
         $getIdMapel = DB::table('mata_pelajaran')->where("id", $request->input('mata_pelajaran'))->get();
-        // $getIdMapel = DB::table('provinsi')->where("id", $request->input('provinsi'))->get();
+        $getIdMapel2 = DB::table('mata_pelajaran')->where("id", $request->input('mata_pelajaran2'))->get();
+        $getIdMapel3 = DB::table('mata_pelajaran')->where("id", $request->input('mata_pelajaran3'))->get();
         DB::table('bahan_ajar')->insert(
             [
                 'id_guru' => $getIdUsers[0]->id,
                 'id_mapel' => $getIdMapel[0]->id
             ]
         );
+        if (!empty($request->input('mata_pelajaran2'))) {
+            DB::table('bahan_ajar')->insert(
+                [
+                    'id_guru' => $getIdUsers[0]->id,
+                    'id_mapel' => $getIdMapel2[0]->id
+                ]
+            );
+        }
+        if (!empty($request->input('mata_pelajaran3'))) {
+            DB::table('bahan_ajar')->insert([
+                'id_guru' => $getIdUsers[0]->id,
+                'id_mapel' => $getIdMapel3[0]->id
+            ]);
+        }
         return redirect('/registrasi');
-        // return view('/registrasi', ['message' => $request]);
     }
 
     public function layanan()

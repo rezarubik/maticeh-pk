@@ -181,10 +181,27 @@ class AdminController extends Controller
     public function pembayaran()
     {
         $act = 'pembayaran';
-        $query = DB::table('pembayaran')->join('users', 'users.id', '=', 'pembayaran.id_pemesan')->get();
+        // $query = DB::table('pembayaran')->join('users', 'users.id', '=', 'pembayaran.id_pemesan')->get();
+        $query = DB::select(DB::raw("SELECT pembayaran.id as id_pembayaran, pemesanan.id as id_pemesanan, tbl_pemesan.name AS nama_pemesan, tbl_guru.name as nama_guru, pembayaran.jumlah_pertemuan as jumlah_pertemuan, pembayaran.tanggal_bayar as tanggal_bayar, pembayaran.tanggal_verifikasi as tanggal_verifikasi, pembayaran.total_pembayaran as total_pembayaran, pembayaran.status as status FROM pemesanan, pembayaran,  (SELECT * from users WHERE role = 2) tbl_guru, (select * from users WHERE role = 1) tbl_pemesan WHERE pemesanan.id_guru = tbl_guru.id && pemesanan.id_pemesan = tbl_pemesan.id && pembayaran.id_pemesanan = pemesanan.id"));
         return view('/adminPages/pembayaran', [
             "act" => $act,
             "query" => $query
         ]);
+    }
+    public function approvePembayaran($id)
+    {
+        $query = DB::table('pembayaran')->select('id')->get();
+        DB::table('pembayaran')->where('id', '=', $id)->update([
+            'status' => 1
+        ]);
+        return redirect('/pembayaran');
+    }
+    public function declinePembayaran($id)
+    {
+        $query = DB::table('pembayaran')->select('id')->get();
+        DB::table('pembayaran')->where('id', '=', $id)->update([
+            'status' => 2
+        ]);
+        return redirect('/pembayaran');
     }
 }

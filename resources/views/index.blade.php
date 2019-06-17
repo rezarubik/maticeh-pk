@@ -25,7 +25,6 @@
     <!-- banner part start-->
 
     <!-- learning part start-->
-    <!-- learning part start-->
     <section class="learning_part">
         <div class="container">
             <div class="row align-items-sm-center align-items-lg-stretch">
@@ -41,8 +40,9 @@
                         <p><b>MATICEH </b>adalah portal pencarian guru privat terbesar di Indonesia. Berbagai keunggulan
                             kami membantu kamu <b>#BelajarJadiHebat</b></p>
                         <ul>
-                            <li><img class="img_index" src="{{asset('assets/img/stars (3).png')}}" alt="">
-                                <h5 class="h5_index">Jaminan Puas</h5>
+                            <li>
+                                <img class="float-left" src="{{asset('assets/img/stars (3).png')}}" alt="">
+                                <h5 class="h5_index">Jaminan Sangat Puas</h5>
                             </li>
                             <li><img class="img_index" src="{{asset('assets/img/scholarship (3).png')}}" alt="">
                                 <h5 class="h5_index">Pilihan Kategori Pelajaran Lengkap</h5>

@@ -2,9 +2,6 @@
 @section('title','Kontak Kami')
 @section('moreCss')
 <style>
-    .main_menu .main-menu-item ul li .nav-link{
-        color: #ffffff;
-    }
     .menu_fixed .main-menu-item ul li .nav-link{
         color: #000;
     }

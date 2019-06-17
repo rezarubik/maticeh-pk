@@ -30,7 +30,7 @@
     <section class="special_cource padding_top">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-12">
+                <div class="col-xl-12 mt-4">
                     <div class="section_tittle text-center">
                         <h2>Form Pendaftaran Guru</h2>
                     </div>
@@ -96,6 +96,7 @@
                   <p class="mt-3"><input type="text" class="@error('address') @enderror form-control" id="inputAddress" placeholder="Alamat Lengkap Anda" oninput="this.className = ''" name="address"></p>
                 </div>
                 <div class="tab">Kelengkapan Data Guru:
+                  {{-- Mata Pelajaran 1 --}}
                   <p class="mt-3">
                     <label for="">Jenjang</label>
                     <select name="jenjang" id="jenjang" class="form-control jenjang">
@@ -114,6 +115,47 @@
                         @endforeach
                     </select>
                   </p>
+                {{-- End Mata Pelajaran 1 --}}
+                {{-- Mata Pelajaran 2 --}}
+                  <p class="mt-3">
+                    <label for="">Jenjang</label>
+                    <select name="jenjang2" id="jenjang2" class="form-control jenjang2">
+                        <option value="">Pilih Jenjang</option>
+                        @foreach ($jenjang as $j)
+                        <option value="{{$j->id_jenjang}}"required>{{$j->jenjang}}</option>
+                        @endforeach
+                    </select>
+                  </p>
+                  <p class="mt-3">
+                    <label for="">Mata Pelajaran</label>
+                    <select name="mata_pelajaran2" id="mata_pelajaran2" class="@error('mata_pelajaran2') @enderror form-control mata_pelajaran2">
+                        <option value="">Pilih mata Pelajaran</option>
+                        @foreach ($mataPelajaran as $mp)
+                        <option id="mata_pelajaran2" value="{{$mp->id}}">{{$mp->nama_mapel}}</option>
+                        @endforeach
+                    </select>
+                  </p>
+                {{-- End Mata Pelajaran 2 --}}
+                {{-- Mata Pelajaran 3 --}}
+                  <p class="mt-3">
+                    <label for="">Jenjang</label>
+                    <select name="jenjang3" id="jenjang3" class="form-control jenjang3">
+                        <option value="">Pilih Jenjang</option>
+                        @foreach ($jenjang as $j)
+                        <option value="{{$j->id_jenjang}}"required>{{$j->jenjang}}</option>
+                        @endforeach
+                    </select>
+                  </p>
+                  <p class="mt-3">
+                    <label for="">Mata Pelajaran</label>
+                    <select name="mata_pelajaran3" id="mata_pelajaran3" class="@error('mata_pelajaran3') @enderror form-control mata_pelajaran3">
+                        <option value="">Pilih mata Pelajaran</option>
+                        @foreach ($mataPelajaran as $mp)
+                        <option id="mata_pelajaran3" value="{{$mp->id}}">{{$mp->nama_mapel}}</option>
+                        @endforeach
+                    </select>
+                  </p>
+                {{-- End Mata Pelajaran 3 --}}
                   <p class="mt-3">
                     <label for="exampleFormControlFile1">Upload CV</label>
                     <div class="custom-file">
@@ -144,84 +186,82 @@
         </div>
     </section>
     <!-- form end -->
+
     {{-- Javascript --}}
-    {{-- Multiple Form --}}
+    {{-- Multiple Form Pelajaran--}}
     <script type="text/javascript">
-        var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
-
-function showTab(n) {
-  // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  //... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
-  }
-  //... and run a function that will display the correct step indicator:
-  fixStepIndicator(n)
-}
-
-function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form...
-  if (currentTab >= x.length) {
-    // ... the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
-
-function validateForm() {
-  // This function deals with validation of the form fields
-  var x, y, i, valid = true;
-  x = document.getElementsByClassName("tab");
-  y = x[currentTab].getElementsByTagName("input");
-  // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
-    // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
-      // and set the current valid status to false
-      valid = false;
-    }
-  }
-  // If the valid status is true, mark the step as finished and valid:
-  if (valid) {
-    document.getElementsByClassName("step")[currentTab].className += " finish";
-  }
-  return valid; // return the valid status
-}
-
-function fixStepIndicator(n) {
-  // This function removes the "active" class of all steps...
-  var i, x = document.getElementsByClassName("step");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
-  }
-  //... and adds the "active" class on the current step:
-  x[n].className += " active";
-}
+      var currentTab = 0; // Current tab is set to be the first tab (0)
+      showTab(currentTab); // Display the current tab
+      function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+          document.getElementById("prevBtn").style.display = "none";
+        } else {
+          document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+          document.getElementById("nextBtn").innerHTML = "Submit";
+        } else {
+          document.getElementById("nextBtn").innerHTML = "Next";
+        }
+        //... and run a function that will display the correct step indicator:
+        fixStepIndicator(n)
+      }
+      function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if (currentTab >= x.length) {
+          // ... the form gets submitted:
+          document.getElementById("regForm").submit();
+          return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+      }
+      function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+          // If a field is empty...
+          if (y[i].value == "") {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false
+            valid = false;
+          }
+        }
+        // If the valid status is true, mark the step as finished and valid:
+        if (valid) {
+          document.getElementsByClassName("step")[currentTab].className += " finish";
+        }
+        return valid; // return the valid status
+      }
+      function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+          x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class on the current step:
+        x[n].className += " active";
+      }
     </script>
     {{-- End Multiple Form --}}
 
+    {{-- Jenjang Mata Pelajaran 1 --}}
     <script type="text/javascript">
         jQuery(document).ready(function ()
         {
@@ -251,6 +291,71 @@ function fixStepIndicator(n) {
                 });
         });
     </script>
+    {{-- End Jenjang Mata Pelajaran 1 --}}
+    {{-- Jenjang Mata Pelajaran 2 --}}
+    <script type="text/javascript">
+        jQuery(document).ready(function ()
+        {
+                jQuery('select[name="jenjang2"]').on('change',function(){
+                   var jenjangStr2 = jQuery(this).val();
+                   if(jenjangStr2)
+                   {
+                      $.ajax({
+                         url : '/getMapel2/' +jenjangStr2,
+                         type : "GET",
+                         data : {"_token":"{{ csrf_token() }}"},
+                         dataType : "json",
+                         success:function(data)
+                         {
+                            console.log(data);
+                          jQuery('select[name="mata_pelajaran2"]').empty();
+                            jQuery.each(data, function(key,value){
+                               $('select[name="mata_pelajaran2"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                         }
+                      });
+                   }
+                   else
+                   {
+                      $('select[name="mata_pelajaran2"]').empty();
+                   }
+                });
+        });
+    </script>
+    {{-- End Jenjang Mata Pelajaran 2 --}}
+    {{-- Jenjang Mata Pelajaran 3 --}}
+    <script type="text/javascript">
+        jQuery(document).ready(function ()
+        {
+                jQuery('select[name="jenjang3"]').on('change',function(){
+                   var jenjangStr3 = jQuery(this).val();
+                   if(jenjangStr3)
+                   {
+                      $.ajax({
+                         url : '/getMapel3/' +jenjangStr3,
+                         type : "GET",
+                         data : {"_token":"{{ csrf_token() }}"},
+                         dataType : "json",
+                         success:function(data)
+                         {
+                            console.log(data);
+                          jQuery('select[name="mata_pelajaran3"]').empty();
+                            jQuery.each(data, function(key,value){
+                               $('select[name="mata_pelajaran3"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                         }
+                      });
+                   }
+                   else
+                   {
+                      $('select[name="mata_pelajaran3"]').empty();
+                   }
+                });
+        });
+    </script>
+    {{-- End Jenjang Mata Pelajaran 3 --}}
+    
+    {{-- Provinsi Kabupaten --}}
     <script type="text/javascript">
         jQuery(document).ready(function ()
         {
@@ -280,5 +385,5 @@ function fixStepIndicator(n) {
                 });
         });
     </script>
-        
+    {{-- End Provinsi Kabupaten --}}    
 @endsection
