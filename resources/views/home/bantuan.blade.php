@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Bantuan')
 @section('moreCss')
-<style>
-    .menu_fixed .main-menu-item ul li .nav-link{
-        color: #000;
-    }
-</style>
 @endsection
 @section('content')
     <!-- breadcrumb start-->

@@ -1,12 +1,5 @@
 @extends('layouts.master')
 @section('title','Kontak Kami')
-@section('moreCss')
-<style>
-    .menu_fixed .main-menu-item ul li .nav-link{
-        color: #000;
-    }
-</style>
-@endsection
 @section('content')
         <!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">

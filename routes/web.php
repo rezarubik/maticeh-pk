@@ -40,6 +40,7 @@ Route::get('/pemesan', 'AdminController@pemesan');
 Route::get('/pemesanan', 'AdminController@pemesanan');
 Route::get('/absensi', 'AdminController@absensi');
 Route::get('/pembayaran', 'AdminController@pembayaran');
+Route::get('/sendEmail', 'AdminController@sendEmail');
 // Route untuk akses mapel
 
 // update status
