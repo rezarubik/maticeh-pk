@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
-    <!-- owl carousel CSS -->
-    {{-- <link rel="stylesheet" style="text/css" href="{{asset('assets/css/owl.carousel.min.css')}}"> --}}
     <!-- themify CSS -->
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/themify-icons.css')}}">
     <!-- flaticon CSS -->
@@ -33,45 +31,46 @@
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/multipleform.css')}}">
     <!-- style CSS -->
     <link rel="stylesheet" style="text/css" href="{{asset('assets/css/style.css')}}">
-
     @yield('moreCss')
+
 </head>
 <body>
     {{-- Navbar --}}
     <!--::header part start::-->
-    <header class="main_menu home_menu">
-      <div class="container">
-        <div class="row align-items-center">
-              <div class="col-lg-12">
-                  <nav class="navbar navbar-expand-lg navbar-light">
-                      <a class="navbar-brand" href="/"> <img src="{{asset('assets/img/icon/logo-maticeh-mini.png')}}" alt="MATICEH"></a>
-                      <button class="navbar-toggler" type="button" data-toggle="collapse"
-                          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                          aria-expanded="false" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                      </button>
+    <header class="main_menu home_menu single_page_menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/"> <img src="{{asset('assets/img/icon/logo-maticeh-mini.png')}}" alt="MATICEH"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-cont"navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-                      <div class="collapse navbar-collapse main-menu-item justify-content-end mt-3" id="navbarSupportedContent">
-                          <ul class="navbar-nav align-items-center">
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/bantuan">Bantuan</a>
-                              </li>
-                              <li class="nav-item">
-                                  <a class="nav-link" href="/layanan">Layanan</a>
-                              </li>
-                              <li class="nav-item">
-                                  <a class="nav-link" href="/kontakKami">Kontak</a>
-                              </li>
-                              <li class="nav-item d-none d-lg-block">
-                                  <a class="btn_1" href="/registrasi">Gabung Menjadi Guru</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </nav>
-              </div>
-          </div>
-      </div>
-     </header>
+                        <div class="collapse navbar-collapse main-menu-item justify-content-end"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/bantuan">Bantuan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/layanan">Layanan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/kontakKami">Kontak</a>
+                                </li>
+                                <li class="d-lg-block pd-join-responsive">
+                                    <a class="btn_1" href="registrasi">Gabung Menjadi Guru</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
   <!-- Header part end-->
 
 
@@ -159,15 +158,11 @@
  <!-- Bootstrap JS-->
  <script src="{{ asset('assets/vendor/bootstrap-4.1/popper.min.js') }}"></script>
  <!-- Vendor JS       -->
- <script src="{{ asset('assets/vendor/slick/slick.min.js') }}">
- </script>
+ <script src="{{ asset('assets/vendor/slick/slick.min.js') }}"></script>
  <script src="{{ asset('assets/vendor/wow/wow.min.js') }}"></script>
+ <script src="{{ asset('assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
  <script src="{{ asset('assets/vendor/animsition/animsition.min.js') }}"></script>
- <script src="{{ asset('assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
- </script>
- {{-- <script src="{{ asset('assets/vendor/counter-up/jquery.waypoints.min.js') }}"></script> --}}
- <script src="{{ asset('assets/vendor/counter-up/jquery.counterup.min.js') }}">
- </script>
+ <script src="{{ asset('assets/vendor/counter-up/jquery.counterup.min.js') }}"></script>
  <script src="{{ asset('assets/vendor/circle-progress/circle-progress.min.js') }}"></script>
  <script src="{{ asset('assets/vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
  <script src="{{ asset('assets/vendor/chartjs/Chart.bundle.min.js') }}"></script>
@@ -188,8 +183,8 @@
  {{-- Animation Navbar --}}
  <script src="{{asset('assets/js/custom.js')}}"></script>
  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
- {{-- From resources --}}
+ 
+{{-- From resources --}}
  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"><script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

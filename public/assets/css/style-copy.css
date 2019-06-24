@@ -1,21 +1,16 @@
 /**************** extend css start ****************/
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:800|Poppins:300,400,500,600,700,800|Roboto:300,400,500");
 
-/* New  */
-
-/* Button register */
-@media (max-width:768px) {
-    .pd-join-responsive {
-        padding-bottom: 50px;
-    }
-
-    .banner_part .banner_text .banner_text_iner {
-        padding-bottom: 100px;
-    }
+/* line 2, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
+.btn_1,
+.btn_2:hover,
+.main_menu .navbar-toggler:after,
+.banner_part .banner_text .btn_1,
+.feature_part .single_feature:hover span {
+    background-image: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
 }
 
-/* End Button register */
-
+/* New  */
 .img_index {
     float: left;
 }
@@ -239,6 +234,13 @@
     color: #fff;
 }
 
+/* line 6, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
+.member_counter {
+    background-image: -moz-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
+    background-image: -webkit-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
+    background-image: -ms-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
+}
+
 /*typewriter*/
 .line-1 {
     position: relative;
@@ -281,21 +283,6 @@
 
 /* end New */
 
-/* line 2, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
-.btn_1,
-.btn_2:hover,
-.main_menu .navbar-toggler:after,
-.banner_part .banner_text .btn_1,
-.feature_part .single_feature:hover span {
-    background-image: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
-}
-
-/* line 6, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
-.member_counter {
-    background-image: -moz-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
-    background-image: -webkit-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
-    background-image: -ms-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
-}
 
 /**************** extend css start ****************/
 /**************** common css start ****************/
@@ -1116,7 +1103,8 @@ ul {
 /* line 70, E:/172 Etrain Education/172_Etrain_Education_html/sass/_blog.scss */
 .single-blog .tag {
     text-align: left;
-    display: inline-block;
+    /* display: inline-block; */
+    display: block;
     float: left;
     font-size: 13px;
     font-weight: 300;
@@ -2558,6 +2546,7 @@ ul {
 /* line 38, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
 .main_menu .main-menu-item ul li .nav-link {
     color: #0c2e60;
+    /* color: #ffffff; */
     font-size: 15px;
     padding: 0px 24px;
     font-family: "Roboto", sans-serif;
@@ -2636,7 +2625,7 @@ ul {
         left: 0;
         top: 71px;
         width: 100%;
-        background-color: #fff;
+        /* background-color: #fffff; */
         text-align: center !important;
     }
 

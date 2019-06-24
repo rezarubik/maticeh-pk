@@ -1,6 +1,13 @@
 @extends('layouts.master')
 
 @section('title', 'MATICEH')
+@section('moreCss')
+<style>
+    .single_page_menu .main-menu-item ul li .nav-link{
+        color: #0c0c0c !important;
+    }
+</style>
+@endsection
 
 @section('content')
     <!-- banner part start-->
@@ -41,7 +48,7 @@
                             kami membantu kamu <b>#BelajarJadiHebat</b></p>
                         <ul>
                             <li>
-                                <img class="float-left" src="{{asset('assets/img/stars (3).png')}}" alt="">
+                                <img class="img_index float-left" src="{{asset('assets/img/stars (3).png')}}" alt="">
                                 <h5 class="h5_index">Jaminan Sangat Puas</h5>
                             </li>
                             <li><img class="img_index" src="{{asset('assets/img/scholarship (3).png')}}" alt="">
@@ -73,7 +80,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-4 col-lg-4">
                     <div class="single_feature">
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><i class="ti-layers"></i></span>
@@ -82,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-4 col-lg-4">
                     <div class="single_feature">
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><i class="ti-new-window"></i></span>
@@ -91,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-4 col-lg-4">
                     <div class="single_feature">
                         <div class="single_feature_part single_feature_part_2">
                             <span class="single_service_icon style_icon"><i class="ti-light-bulb"></i></span>
@@ -103,7 +110,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-4 col-lg-4">
                     <div class="single_feature">
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><i class="ti-location-pin"></i></span>
@@ -112,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-4 col-lg-4">
                     <div class="single_feature">
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><i class="ti-calendar"></i></span>
@@ -121,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-4 col-lg-4">
                     <div class="single_feature">
                         <div class="single_feature_part single_feature_part_2">
                             <span class="single_service_icon style_icon"><i class="ti-comments"></i></span>
