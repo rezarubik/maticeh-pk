@@ -25,8 +25,8 @@
         $tgl_pesanan = date("Y-m-d H:i:s");
 		
 		//Pembuatan Syntax SQL
-		$sql = "INSERT INTO pemesanan (id_guru, id_pemesan, id_mapel, nama_murid, kelas, tgl_pertemuan_pertama, status, created_at)
-        VALUES ('$id_guru', '$id_pemesan', '$id_mapel', '$nama_murid', '$kelas', '$tgl_pertemuan_pertama','$status', '$tgl_pesanan')";
+		$sql = "INSERT INTO pemesanan (id_guru, id_pemesan, id_mapel, nama_murid, kelas, tgl_pertemuan_pertama, jumlah_pertemuan, jumlah_bayar, status, created_at)
+        VALUES ('$id_guru', '$id_pemesan', '$id_mapel', '$nama_murid', '$kelas', '$tgl_pertemuan_pertama', 0, 0, '$status', '$tgl_pesanan')";
 		
 		//Import File Koneksi database
 		require_once('connection.php');
