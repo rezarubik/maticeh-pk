@@ -1,52 +1,75 @@
 <?php
-    //Import File Koneksi Database
-	require_once('connection.php');
-	
-	$id_pemesan = 43;
 
-    $sql = "SELECT pbyr.id,
-    pbyr.id_pemesan,
-    pbyr.tanggal_tagihan,
-    pbyr.tanggal_bayar,
-    pbyr.tanggal_verifikasi,
-    pbyr.total_pembayaran,
-    bt.nama_bank as nama_bank_tujuan,
-    bt.no_rekening as no_rekening_tujuan,
-    bt.atas_nama as atas_nama_tujuan,
-    ru.jenis_bank as nama_bank_pengirim,
-    ru.nomor_rekening as no_rekening_pengirim,
-    ru.atas_nama as atas_nama_pengirim,
-    pbyr.status
-    FROM pembayaran pbyr LEFT JOIN rekening_user ru ON pbyr.id_bank_pengirim = ru.id
-    LEFT JOIN bank_tujuan bt ON pbyr.id_bank_tujuan = bt.id
-    WHERE pbyr.id_pemesan ='$id_pemesan'";
-    
-    //Mendapatkan Hasil
-    try {
-        $r = mysqli_query($con, $sql);
+$id_pemesan = '46';
+
+// $id_guru = 36;
+//Import File Koneksi Database
+require_once('connection.php');
+
+try {
+    //Membuat SQL Query
+    $sql = "SELECT pemesanan.*,
+    tguru.name AS guru_name,
+    tpemesan.name AS pemesan_name,
+    tpemesan.provinsi AS pemesan_provinsi,
+    tpemesan.kabupaten_kota AS pemesan_kabupaten_kota,
+    tpemesan.alamat AS pemesan_alamat,
+    mata_pelajaran.nama_mapel AS mapel_name,
+    pemesanan.id_pembayaran,
+    pemesanan.jumlah_pertemuan,
+    jenjang.harga AS harga_jenjang,
+    pemesanan.jumlah_bayar,
+    jenjang.jenjang AS nama_jenjang
+    FROM pemesanan,
+    (SELECT * FROM users WHERE role = 1) AS tpemesan, 
+    (SELECT * FROM users WHERE role = 2) AS tguru,
+    mata_pelajaran,jenjang
+    WHERE pemesanan.id_guru = tguru.id
+    AND pemesanan.id_mapel = mata_pelajaran.id 
+    AND pemesanan.id_pemesan = tpemesan.id
+    AND mata_pelajaran.jenjang=jenjang.id_jenjang
+    AND pemesanan.id_pemesan = '$id_pemesan'
+    AND pemesanan.status = 1";
+        
+        //Mendapatkan Hasil
+        $r = mysqli_query($con,$sql);
+        
+        //Membuat Array Kosong 
         $result = array();
-
-        while ($row = mysqli_fetch_array($r)) {
-            array_push($result, array(
-                "id" => $row['id'],
-                "id_pemesan" => $row['id_pemesan'],
-                "tanggal_tagihan"=>$row['tanggal_tagihan'],
-                "tanggal_bayar" => $row['tanggal_bayar'],
-                "tanggal_verifikasi" => $row['tanggal_verifikasi'],
-                "total_pembayaran" => $row['total_pembayaran'],
-                "nama_bank_tujuan" => $row['nama_bank_tujuan'],
-                "no_rekening_tujuan" => $row['no_rekening_tujuan'],
-                "atas_nama_tujuan" => $row['atas_nama_tujuan'],
-                "nama_bank_pengirim" => $row['nama_bank_pengirim'],
-                "no_rekening_pengirim" => $row['no_rekening_pengirim'],
-                "atas_nama_pengirim"=> $row['atas_nama_pengirim'],
-                "status" => $row['status']
+        
+        while($row = mysqli_fetch_array($r)){
+            
+            //Memasukkan Nama dan ID kedalam Array Kosong yang telah dibuat 
+            array_push($result,array(
+                "id "=>$row['id'],
+                "id_guru "=>$row['id_guru'],
+                "id_pemesan "=>$row['id_pemesan'],
+                "id_mapel "=>$row['id_mapel'],
+                "nama_murid "=>$row['nama_murid'],
+                "kelas "=>$row['kelas'],
+                "tgl_pertemuan_pertama "=>$row['tgl_pertemuan_pertama'],
+                "status "=>$row['status'],
+                "created_at "=>$row['created_at'],
+                "updated_at "=>$row['updated_at'],
+                "guru_name "=>$row['guru_name'],
+                "pemesan_name "=>$row['pemesan_name'],
+                "pemesan_provinsi "=>$row['pemesan_provinsi'],
+                "pemesan_kabupaten_kota "=>$row['pemesan_kabupaten_kota'],
+                "pemesan_alamat "=>$row['pemesan_alamat'],
+                "mapel_name "=>$row['mapel_name'],
+                "id_pembayaran "=>$row['id_pembayaran'],
+                "sesi"=>$row['jumlah_pertemuan'],
+                "harga_jenjang"=>$row['harga_jenjang'],
+                "total_pembayaran"=>$row['jumlah_bayar'],
+                "nama_jenjang"=>$row['nama_jenjang']
             ));
         }
-
-        //Menampilkan dalam format JSON
-        echo json_encode(array('result' => $result));
+        
+        //Menampilkan Array dalam Format JSON
+        echo json_encode(array('result'=>$result));
+        
+        mysqli_close($con);
     } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
+        echo 'Caught exception: ',  $e->getMessage(), " \n ";
     }
-    mysqli_close($con);
+?>

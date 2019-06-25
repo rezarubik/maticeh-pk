@@ -18,7 +18,8 @@ try {
     pemesanan.id_pembayaran,
     pemesanan.jumlah_pertemuan,
     pemesanan.jumlah_bayar,
-    jenjang.harga AS harga_jenjang
+    jenjang.harga AS harga_jenjang,
+    jenjang.jenjang AS nama_jenjang
     FROM pemesanan,
     (SELECT * FROM users WHERE role = 1) AS tpemesan, 
     (SELECT * FROM users WHERE role = 2) AS tguru,
@@ -27,7 +28,7 @@ try {
     AND pemesanan.id_mapel = mata_pelajaran.id 
     AND pemesanan.id_pemesan = tpemesan.id
     AND mata_pelajaran.jenjang=jenjang.id_jenjang
-    
+    AND pemesanan.id_pemesan = '$id_pemesan'
     AND pemesanan.status = 1";
         
         //Mendapatkan Hasil
@@ -40,26 +41,27 @@ try {
             
             //Memasukkan Nama dan ID kedalam Array Kosong yang telah dibuat 
             array_push($result,array(
-                "id "=>$row['id'],
-                "id_guru "=>$row['id_guru'],
-                "id_pemesan "=>$row['id_pemesan'],
-                "id_mapel "=>$row['id_mapel'],
-                "nama_murid "=>$row['nama_murid'],
-                "kelas "=>$row['kelas'],
-                "tgl_pertemuan_pertama "=>$row['tgl_pertemuan_pertama'],
-                "status "=>$row['status'],
-                "created_at "=>$row['created_at'],
-                "updated_at "=>$row['updated_at'],
-                "guru_name "=>$row['guru_name'],
-                "pemesan_name "=>$row['pemesan_name'],
-                "pemesan_provinsi "=>$row['pemesan_provinsi'],
-                "pemesan_kabupaten_kota "=>$row['pemesan_kabupaten_kota'],
-                "pemesan_alamat "=>$row['pemesan_alamat'],
-                "mapel_name "=>$row['mapel_name'],
-                "id_pembayaran "=>$row['id_pembayaran'],
+                "id"=>$row['id'],
+                "id_guru"=>$row['id_guru'],
+                "id_pemesan"=>$row['id_pemesan'],
+                "id_mapel"=>$row['id_mapel'],
+                "nama_murid"=>$row['nama_murid'],
+                "kelas"=>$row['kelas'],
+                "tgl_pertemuan_pertama"=>$row['tgl_pertemuan_pertama'],
+                "status"=>$row['status'],
+                "created_at"=>$row['created_at'],
+                "updated_at"=>$row['updated_at'],
+                "guru_name"=>$row['guru_name'],
+                "pemesan_name"=>$row['pemesan_name'],
+                "pemesan_provinsi"=>$row['pemesan_provinsi'],
+                "pemesan_kabupaten_kota"=>$row['pemesan_kabupaten_kota'],
+                "pemesan_alamat"=>$row['pemesan_alamat'],
+                "mapel_name"=>$row['mapel_name'],
+                "id_pembayaran"=>$row['id_pembayaran'],
                 "sesi"=>$row['jumlah_pertemuan'],
                 "harga_jenjang"=>$row['harga_jenjang'],
-                "total_pembayaran"=>$row['jumlah_bayar']
+                "total_pembayaran"=>$row['jumlah_bayar'],
+                "nama_jenjang"=>$row['nama_jenjang']
             ));
         }
         
