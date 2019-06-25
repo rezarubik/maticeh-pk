@@ -2,12 +2,9 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: #f1f1f1;
-}
-
 #regForm {
-    background-color: #ffffff;
+    background-color: #f1f1f1;
+    /* #ffffff */
     margin: 0px auto;
     font-family: Raleway;
     padding: 40px;

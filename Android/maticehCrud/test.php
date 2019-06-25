@@ -1,27 +1,75 @@
 <?php
-    //Import File Koneksi Database
-	require_once('connection.php');
-	
-	$provinsi = "DKI Jakarta";
 
-        $sql = "SELECT pk.id, pk.kab_kota, p.provinsi FROM prov_kabot pk, provinsi p WHERE pk.provinsi = p.id_provinsi && p.provinsi = '$provinsi'";
+$id_pemesan = '46';
 
-        try {
-            $r = mysqli_query($con, $sql);
-            $result = array();
+// $id_guru = 36;
+//Import File Koneksi Database
+require_once('connection.php');
 
-            while ($row = mysqli_fetch_array($r)) {
-                array_push($result, array(
-                    "id"=>$row['id'],
-                    "kabupaten_kota" => $row['kab_kota'],
-                    "provinsi"=>$row['provinsi']
-                ));
-            }
-            //Menampilkan dalam format JSON
-            echo json_encode(array('result' => $result));
-        } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
+try {
+    //Membuat SQL Query
+    $sql = "SELECT pemesanan.*,
+    tguru.name AS guru_name,
+    tpemesan.name AS pemesan_name,
+    tpemesan.provinsi AS pemesan_provinsi,
+    tpemesan.kabupaten_kota AS pemesan_kabupaten_kota,
+    tpemesan.alamat AS pemesan_alamat,
+    mata_pelajaran.nama_mapel AS mapel_name,
+    pemesanan.id_pembayaran,
+    pemesanan.jumlah_pertemuan,
+    jenjang.harga AS harga_jenjang,
+    pemesanan.jumlah_bayar,
+    jenjang.jenjang AS nama_jenjang
+    FROM pemesanan,
+    (SELECT * FROM users WHERE role = 1) AS tpemesan, 
+    (SELECT * FROM users WHERE role = 2) AS tguru,
+    mata_pelajaran,jenjang
+    WHERE pemesanan.id_guru = tguru.id
+    AND pemesanan.id_mapel = mata_pelajaran.id 
+    AND pemesanan.id_pemesan = tpemesan.id
+    AND mata_pelajaran.jenjang=jenjang.id_jenjang
+    AND pemesanan.id_pemesan = '$id_pemesan'
+    AND pemesanan.status = 1";
+        
+        //Mendapatkan Hasil
+        $r = mysqli_query($con,$sql);
+        
+        //Membuat Array Kosong 
+        $result = array();
+        
+        while($row = mysqli_fetch_array($r)){
+            
+            //Memasukkan Nama dan ID kedalam Array Kosong yang telah dibuat 
+            array_push($result,array(
+                "id "=>$row['id'],
+                "id_guru "=>$row['id_guru'],
+                "id_pemesan "=>$row['id_pemesan'],
+                "id_mapel "=>$row['id_mapel'],
+                "nama_murid "=>$row['nama_murid'],
+                "kelas "=>$row['kelas'],
+                "tgl_pertemuan_pertama "=>$row['tgl_pertemuan_pertama'],
+                "status "=>$row['status'],
+                "created_at "=>$row['created_at'],
+                "updated_at "=>$row['updated_at'],
+                "guru_name "=>$row['guru_name'],
+                "pemesan_name "=>$row['pemesan_name'],
+                "pemesan_provinsi "=>$row['pemesan_provinsi'],
+                "pemesan_kabupaten_kota "=>$row['pemesan_kabupaten_kota'],
+                "pemesan_alamat "=>$row['pemesan_alamat'],
+                "mapel_name "=>$row['mapel_name'],
+                "id_pembayaran "=>$row['id_pembayaran'],
+                "sesi"=>$row['jumlah_pertemuan'],
+                "harga_jenjang"=>$row['harga_jenjang'],
+                "total_pembayaran"=>$row['jumlah_bayar'],
+                "nama_jenjang"=>$row['nama_jenjang']
+            ));
         }
-
-    mysqli_close($con);
+        
+        //Menampilkan Array dalam Format JSON
+        echo json_encode(array('result'=>$result));
+        
+        mysqli_close($con);
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), " \n ";
+    }
 ?>

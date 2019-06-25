@@ -1,29 +1,35 @@
 <?php
 
-    $id_pemesan = $_POST['id_pemesan'];
+$id_pemesan = $_POST['id_pemesan'];
 
-    // $id_guru = 36;
-    //Import File Koneksi Database
-	require_once('connection.php');
-    
-    try {
-        //Membuat SQL Query
-        $sql = "SELECT pemesanan.*,
-                tguru.name AS guru_name,
-                tpemesan.name AS pemesan_name,
-                tpemesan.provinsi AS pemesan_provinsi,
-                tpemesan.kabupaten_kota AS pemesan_kabupaten_kota,
-                tpemesan.alamat AS pemesan_alamat,
-                mata_pelajaran.nama_mapel AS mapel_name
-                FROM pemesanan,
-                (SELECT * FROM users WHERE role = 1) AS tpemesan, 
-                (SELECT * FROM users WHERE role = 2) AS tguru,
-                mata_pelajaran
-                WHERE pemesanan.id_guru = tguru.id
-                AND pemesanan.id_mapel = mata_pelajaran.id 
-                AND pemesanan.id_pemesan = tpemesan.id
-                AND pemesanan.id_pemesan = '$id_pemesan'
-                AND pemesanan.status = 1";
+// $id_guru = 36;
+//Import File Koneksi Database
+require_once('connection.php');
+
+try {
+    //Membuat SQL Query
+    $sql = "SELECT pemesanan.*,
+    tguru.name AS guru_name,
+    tpemesan.name AS pemesan_name,
+    tpemesan.provinsi AS pemesan_provinsi,
+    tpemesan.kabupaten_kota AS pemesan_kabupaten_kota,
+    tpemesan.alamat AS pemesan_alamat,
+    mata_pelajaran.nama_mapel AS mapel_name,
+    pemesanan.id_pembayaran,
+    pemesanan.jumlah_pertemuan,
+    pemesanan.jumlah_bayar,
+    jenjang.harga AS harga_jenjang,
+    jenjang.jenjang AS nama_jenjang
+    FROM pemesanan,
+    (SELECT * FROM users WHERE role = 1) AS tpemesan, 
+    (SELECT * FROM users WHERE role = 2) AS tguru,
+    mata_pelajaran,jenjang
+    WHERE pemesanan.id_guru = tguru.id
+    AND pemesanan.id_mapel = mata_pelajaran.id 
+    AND pemesanan.id_pemesan = tpemesan.id
+    AND mata_pelajaran.jenjang=jenjang.id_jenjang
+    AND pemesanan.id_pemesan = '$id_pemesan'
+    AND pemesanan.status = 1";
         
         //Mendapatkan Hasil
         $r = mysqli_query($con,$sql);
@@ -50,7 +56,12 @@
                 "pemesan_provinsi"=>$row['pemesan_provinsi'],
                 "pemesan_kabupaten_kota"=>$row['pemesan_kabupaten_kota'],
                 "pemesan_alamat"=>$row['pemesan_alamat'],
-                "mapel_name"=>$row['mapel_name']
+                "mapel_name"=>$row['mapel_name'],
+                "id_pembayaran"=>$row['id_pembayaran'],
+                "sesi"=>$row['jumlah_pertemuan'],
+                "harga_jenjang"=>$row['harga_jenjang'],
+                "total_pembayaran"=>$row['jumlah_bayar'],
+                "nama_jenjang"=>$row['nama_jenjang']
             ));
         }
         
@@ -59,6 +70,6 @@
         
         mysqli_close($con);
     } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
+        echo 'Caught exception: ',  $e->getMessage(), " \n ";
     }
 ?>

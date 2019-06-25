@@ -6,18 +6,23 @@
     <div class="row">
             <div class="col-md-12">
                     <h3 class="title-5 m-b-35">Data Pembayaran</h3>
+                    {{-- <h4 class="title-5">{{$pesanEmail}}</h4> --}}
+                    {{-- <h4 class="title-4 m-b-35">{{$pesan}}</h4> --}}
                     <!-- DATA TABLE -->
-                    <div class="table-responsive table-responsive-data2">
+                    <div class="table-responsive">
                         <table class="table table-data2">
                             <thead>
                                 <tr>
                                     <th>id pembayaran</th>
-                                    <th>id pemesan</th>
-                                    <th>Nama</th>
-                                    <th>link bukti pembayaran</th>
-                                    <th>status</th>
+                                    <th>id pemesanan</th>
+                                    <th>nama pemesan</th>
+                                    <th>nama guru</th>
+                                    {{-- <th>email guru</th> --}}
+                                    <th>jumlah pertemuan</th>
                                     <th>tanggal bayar</th>
-                                    <th>tanggal diverifikasi</th>
+                                    <th>tanggal verifikasi</th>
+                                    <th>total pembayaran</th>
+                                    <th>status</th>
                                     <th>actions</th>
                                 </tr>
                             </thead>
@@ -25,45 +30,45 @@
                                 @foreach ($query as $q)                                    
                                 <tr class="tr-shadow">
                                     {{-- <td>1</td> --}}
-                                    <td>{{$q->id}}</td>
-                                    <td>{{$q->id_pemesan}}</td>
-                                    <td>{{$q->name}}</td>
+                                    <td>{{$q->id_pembayaran}}</td>
+                                    <td>{{$q->id_pemesanan}}</td>
+                                    <td>{{$q->nama_pemesan}}</td>
+                                    <td>{{$q->nama_guru}}</td>
+                                    {{-- <td>{{$q->email}}</td> --}}
+                                    <td>{{$q->jumlah_pertemuan}}</td>
+                                    <td>{{$q->tanggal_bayar}}</td>
+                                    <td>{{$q->tanggal_verifikasi}}</td>
+                                    <td>{{$q->total_pembayaran}}</td>
                                     <td>
-                                        <span>{{$q->link}}</span>
-                                    </td>
-                                    <td>
+                                        {{-- Status --}}
                                         @if ($q->status == 0)
                                             <label for="" class="badge badge-warning">Waiting</label>
                                             @elseif ($q->status == 1)
-                                            <label for="" class="badge badge-warning">Accepted</label>
+                                            <label for="" class="badge badge-success">Accepted</label>
                                             @elseif($q->status == 2)
-                                            <label for="" class="badge badge-warning">Invalid</label>
+                                            <label for="" class="badge badge-danger">Decline</label>
                                         @endif
-                                        {{-- <div class="table-data-feature">
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Accept">
-                                                <i class="zmdi zmdi-check-circle"></i>
-                                            </button>
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Decline">
-                                                 <i class="zmdi zmdi-close-circle"></i>
-                                            </button>
-                                        </div> --}}
-                                    </td>
-                                    <td>
-                                        <span class="date">{{$q->tgl_bayar}}</span>
-                                    </td>
-                                    <td>
-                                        <span class="date">{{$q->tgl_verifikasi}}</span>
                                     </td>
                                     <td>
                                         <div class="table-data-feature">
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Accept">
-                                                <i class="zmdi zmdi-check-circle"></i>
-                                            </button>
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Decline">
-                                                <i class="zmdi zmdi-minus-circle"></i>
-                                            </button>
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <i class="zmdi zmdi-delete"></i>
+                                            @if ($q->status == 1)
+                                                <a href="/sendEmail" class="item" data-toggle="tooltip" data-placement="top" title="Send Email">
+                                                    <i class="zmdi zmdi-mail-send"></i>
+                                                </a>
+                                                <a href="/pembayaran/approve/{{$q->id_pembayaran}}" class="item" data-toggle="tooltip" data-placement="top" title="Accept">
+                                                    <i class="zmdi zmdi-check-circle"></i>
+                                                </a>
+                                                <a href="/pembayaran/decline/{{$q->id_pembayaran}}" class="item" data-toggle="tooltip" data-placement="top" title="Decline">
+                                                    <i class="zmdi zmdi-minus-circle"></i>
+                                                </a>
+                                                @elseif($q->status == 2)
+                                                    <a href="/pembayaran/approve/{{$q->id_pembayaran}}" class="item" data-toggle="tooltip" data-placement="top" title="Accept">
+                                                        <i class="zmdi zmdi-check-circle"></i>
+                                                    </a>
+                                                    <a href="/pembayaran/decline/{{$q->id_pembayaran}}" class="item" data-toggle="tooltip" data-placement="top" title="Decline">
+                                                        <i class="zmdi zmdi-minus-circle"></i>
+                                                    </a>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

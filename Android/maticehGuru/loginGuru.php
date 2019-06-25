@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
-    $sql = "SELECT users.*, guru.institusi, guru.direktori_cv FROM `users` JOIN guru ON users.id = guru.id_guru WHERE users.email = '$email' and users.password = '$password';";
+    $sql = "SELECT users.*, guru.institusi, guru.direktori_cv FROM `users` JOIN guru ON users.id = guru.id_guru WHERE users.email = '$email' AND users.password = '$password' AND users.status = '1'";
 
     //Mendapatkan Hasil
     try {

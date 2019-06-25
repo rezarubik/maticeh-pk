@@ -14,6 +14,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	$r = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($r);
 	if ($row['verifikasi'] == '1') {
+		
 		//Pembuatan Syntax SQL
 		$sql = "INSERT INTO absen (id_pemesanan, status, created_at)
 		VALUES ('$id_pemesanan', '$status', '$created_at')";

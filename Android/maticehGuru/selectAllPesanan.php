@@ -13,14 +13,16 @@
                 tpemesan.provinsi AS pemesan_provinsi,
                 tpemesan.kabupaten_kota AS pemesan_kabupaten_kota,
                 tpemesan.alamat AS pemesan_alamat,
-                mata_pelajaran.nama_mapel AS mapel_name
+                mata_pelajaran.nama_mapel AS mapel_name,
+                jenjang.jenjang AS nama_jenjang
                 FROM pemesanan,
                 (SELECT * FROM users WHERE role = 1) AS tpemesan, 
                 (SELECT * FROM users WHERE role = 2) AS tguru,
-                mata_pelajaran
+                mata_pelajaran, jenjang
                 WHERE pemesanan.id_guru = tguru.id
                 AND pemesanan.id_pemesan = tpemesan.id
                 AND pemesanan.id_mapel = mata_pelajaran.id 
+                AND mata_pelajaran.jenjang = jenjang.id_jenjang
                 AND pemesanan.id_guru = '$id_guru'
                 AND pemesanan.status = 0";
         
@@ -49,7 +51,8 @@
                 "pemesan_provinsi"=>$row['pemesan_provinsi'],
                 "pemesan_kabupaten_kota"=>$row['pemesan_kabupaten_kota'],
                 "pemesan_alamat"=>$row['pemesan_alamat'],
-                "mapel_name"=>$row['mapel_name']
+                "mapel_name"=>$row['mapel_name'],
+                "nama_jenjang"=>$row['nama_jenjang']
             ));
         }
         
