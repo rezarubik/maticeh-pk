@@ -9,27 +9,27 @@ require_once('connection.php');
 try {
     //Membuat SQL Query
     $sql = "SELECT pemesanan.*,
-    tguru.name AS guru_name,
-    tpemesan.name AS pemesan_name,
-    tpemesan.provinsi AS pemesan_provinsi,
-    tpemesan.kabupaten_kota AS pemesan_kabupaten_kota,
-    tpemesan.alamat AS pemesan_alamat,
-    mata_pelajaran.nama_mapel AS mapel_name,
-    pemesanan.id_pembayaran,
-    pemesanan.jumlah_pertemuan,
-    pemesanan.jumlah_bayar,
-    jenjang.harga AS harga_jenjang,
-    jenjang.jenjang AS nama_jenjang
-    FROM pemesanan,
-    (SELECT * FROM users WHERE role = 1) AS tpemesan, 
-    (SELECT * FROM users WHERE role = 2) AS tguru,
-    mata_pelajaran,jenjang
-    WHERE pemesanan.id_guru = tguru.id
-    AND pemesanan.id_mapel = mata_pelajaran.id 
-    AND pemesanan.id_pemesan = tpemesan.id
-    AND mata_pelajaran.jenjang=jenjang.id_jenjang
-    AND pemesanan.id_pemesan = '$id_pemesan'
-    AND pemesanan.status = 1";
+            tguru.name AS guru_name,
+            tpemesan.name AS pemesan_name,
+            tpemesan.provinsi AS pemesan_provinsi,
+            tpemesan.kabupaten_kota AS pemesan_kabupaten_kota,
+            tpemesan.alamat AS pemesan_alamat,
+            mata_pelajaran.nama_mapel AS mapel_name,
+            pemesanan.id_pembayaran,
+            pemesanan.jumlah_pertemuan,
+            pemesanan.jumlah_bayar,
+            jenjang.harga AS harga_jenjang,
+            jenjang.jenjang AS nama_jenjang
+            FROM pemesanan,
+            (SELECT * FROM users WHERE role = 1) AS tpemesan, 
+            (SELECT * FROM users WHERE role = 2) AS tguru,
+            mata_pelajaran,jenjang
+            WHERE pemesanan.id_guru = tguru.id
+            AND pemesanan.id_mapel = mata_pelajaran.id 
+            AND pemesanan.id_pemesan = tpemesan.id
+            AND mata_pelajaran.jenjang=jenjang.id_jenjang
+            AND pemesanan.id_pemesan = '$id_pemesan'
+            AND pemesanan.status = 1";
         
         //Mendapatkan Hasil
         $r = mysqli_query($con,$sql);
