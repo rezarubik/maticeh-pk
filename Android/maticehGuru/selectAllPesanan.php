@@ -1,6 +1,7 @@
 <?php
 
     $id_guru = $_POST['id_guru'];
+    $status = $_POST['status'];
     // $id_guru = 36;
     //Import File Koneksi Database
 	require_once('connection.php');
@@ -28,7 +29,7 @@
                 AND pemesanan.id_pemesan = tpemesan.id
                 AND mata_pelajaran.jenjang=jenjang.id_jenjang
                 AND pemesanan.id_guru = '$id_guru'
-                AND pemesanan.status = 0";
+                AND pemesanan.status = '$status'";
         
         //Mendapatkan Hasil
         $r = mysqli_query($con,$sql);
