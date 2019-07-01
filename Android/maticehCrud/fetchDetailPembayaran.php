@@ -1,6 +1,6 @@
 <?php
 
-$id_pembayaran = '1';
+$id_pembayaran = $_POST['id'];
 
 // $id_guru = 36;
 //Import File Koneksi Database

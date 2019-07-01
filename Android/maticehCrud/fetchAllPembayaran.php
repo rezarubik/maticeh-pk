@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     FROM pembayaran pbyr LEFT JOIN rekening_user ru ON pbyr.id_bank_pengirim = ru.id
     LEFT JOIN bank_tujuan bt ON pbyr.id_bank_tujuan = bt.id
     WHERE pbyr.id_pemesan ='$id_pemesan'";
-    
+
     //Mendapatkan Hasil
     try {
         $r = mysqli_query($con, $sql);
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "tanggal_verifikasi" => $row['tanggal_verifikasi'],
                 "total_pembayaran" => $row['total_pembayaran'],
                 "nama_bank_tujuan" => $row['nama_bank_tujuan'],
-                "no_rekening_tujuan" => $row['no_rekening_tujuan'], 
+                "no_rekening_tujuan" => $row['no_rekening_tujuan'],
                 "atas_nama_tujuan" => $row['atas_nama_tujuan'],
                 "nama_bank_pengirim" => $row['nama_bank_pengirim'],
                 "no_rekening_pengirim" => $row['no_rekening_pengirim'],
